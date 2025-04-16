@@ -64,14 +64,14 @@ body {
     margin: 0 auto;
     padding: 20px;
     /* Add padding to the left to make space for the toggle */
-    padding-left: 80px; /* Increased padding for wider toggle area */
+    padding-left: 60px; /* Adjust as needed based on toggle size */
     position: relative; /* Needed for absolute positioning of sidebar */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
 }
 
-/* --- Sidebar Styles --- */
+/* --- START: Added Sidebar Styles --- */
 .sidebar {
     position: fixed; /* Keep sidebar fixed on the left */
     left: 0;
@@ -81,92 +81,84 @@ body {
     background-color: var(--bg-primary); /* Match page background */
     border-right: 1px solid var(--border-color);
     transform: translateX(-100%); /* Initially hidden off-screen */
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    transition: transform 0.3s ease-in-out;
     z-index: 1000; /* Ensure sidebar is above content */
     overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds height */
     font-size: 14px; /* Slightly smaller font for sidebar */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow when open */
 }
 
 .sidebar.active {
     transform: translateX(0); /* Slide in */
-    /* Add pulsating glow animation when active */
-    animation: sidebar-pulse-glow 2.5s infinite ease-in-out;
 }
 
-/* Sidebar Pulse Glow animation */
-@keyframes sidebar-pulse-glow {
-    0%, 100% { box-shadow: 2px 0 8px 2px rgba(255, 255, 255, 0.6); }
-    50% { box-shadow: 2px 0 15px 5px rgba(255, 255, 255, 0.9); } /* Brighter white glow */
+/* Container for the toggle button and vertical text */
+.sidebar-toggle-container {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column; /* Arrange icon and text vertically */
+    align-items: center; /* Center items horizontally */
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above the sidebar */
 }
 
 .sidebar-toggle {
-    position: fixed; /* Keep toggle button fixed */
-    left: 10px; /* Position from the left edge */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%);
-    width: auto; /* Auto width based on content */
-    height: auto; /* Auto height */
-    background-color: transparent; /* Make button background transparent */
-    border: none; /* Remove border */
-    border-radius: var(--card-radius); /* Apply Notion radius */
-    display: flex; /* Use flex for centering internal content */
+    /* Remove fixed positioning, now handled by container */
+    position: relative; 
+    left: auto;
+    top: auto;
+    transform: none; /* Reset transform */
+    /* Keep other styles: size, background, border, radius, flex, align, justify */
+    width: 35px;
+    height: 35px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    z-index: 1001; /* Above sidebar */
-    padding: 8px 5px; /* Padding around icon and text */
-    transition: background-color 0.2s ease; /* Transition for potential hover bg */
-}
-
-.sidebar-toggle .toggle-content {
-    display: flex;
-    flex-direction: column; /* Stack icon and text vertically */
-    align-items: center;
-    gap: 4px; /* Space between icon and text */
-    background-color: var(--bg-primary); /* Button background */
-    border: 1px solid var(--border-color);
-    border-radius: var(--card-radius); /* Match Notion style */
-    padding: 10px 8px; /* Padding inside the visual button */
-    box-shadow: var(--shadow-subtle);
+    /* Keep transition and animation, but animation name might change */
     transition: background-color 0.2s ease, box-shadow 0.3s ease;
-    /* Apply the glow animation */
-    animation: pulse-glow 2s infinite ease-in-out;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Start with a visible glow */
+    /* Updated animation for flashing white glow */
+    animation: flashing-white-glow 1.8s infinite ease-in-out;
 }
 
-
-.sidebar-toggle:hover .toggle-content {
-     background-color: var(--bg-secondary); /* Hover effect */
-     /* Optionally pause glow on hover */
-     /* animation-play-state: paused; */
-}
-
- .sidebar-toggle .toggle-icon {
-     font-size: 1.3em; /* Slightly larger icon */
-     line-height: 1; /* Ensure icon is centered */
-     user-select: none; /* Prevent text selection */
-     color: var(--text-primary);
- }
-
- .sidebar-toggle .toggle-text {
+/* Vertical text style */
+.sidebar-toggle-text {
     writing-mode: vertical-rl; /* Vertical text, right-to-left */
-    text-orientation: mixed; /* Adjust glyph orientation if needed */
-    font-size: 11px; /* Small font size for the text */
+    text-orientation: mixed;
     color: var(--text-secondary);
-    font-weight: 500;
-    white-space: nowrap; /* Prevent wrapping */
-    user-select: none;
-    margin-top: 2px; /* Small space above text */
-    letter-spacing: 0.5px;
- }
-
-/* White Pulse Glow animation */
-@keyframes pulse-glow {
-    0% { box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.7); }
-    50% { box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.9); } /* Brighter white glow */
-    100% { box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.7); }
+    font-size: 11px; /* Small font size */
+    margin-top: 8px; /* Space below the icon */
+    letter-spacing: 1px; /* Adjust letter spacing */
+    line-height: 1.6; /* Increased line height for comfortable spacing */
+    user-select: none; /* Prevent text selection */
+    transition: color 0.2s ease;
 }
 
+.sidebar-toggle-container:hover .sidebar-toggle {
+     background-color: var(--bg-secondary); /* Hover effect on container */
+     animation-play-state: paused; /* Pause glow on hover */
+     box-shadow: 0 0 14px 4px rgba(255, 255, 255, 1); /* Stronger white glow on hover */
+}
+
+.sidebar-toggle-container:hover .sidebar-toggle-text {
+    color: var(--text-primary); /* Darken text on hover */
+}
+
+ .sidebar-toggle span {
+     font-size: 1.2em;
+     user-select: none; /* Prevent text selection */
+ }
+
+/* Updated Glow animation for flashing white effect */
+@keyframes flashing-white-glow {
+    0%, 100% { box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.4); } /* Slightly dimmer base */
+    50% { box-shadow: 0 0 18px 6px rgba(255, 255, 255, 1); }   /* Significantly stronger peak white glow */
+}
 
 .sidebar-content {
     padding: 20px;
@@ -246,9 +238,8 @@ body {
     color: var(--text-primary); /* Highlight current page */
      background-color: var(--block-gray);
 }
-/* --- END: Sidebar Styles --- */
+/* --- END: Added Sidebar Styles --- */
 
-/* --- General Page Styles --- */
 header {
     text-align: center;
     padding: 25px 0;
@@ -261,22 +252,18 @@ header {
 
 .navigation {
     display: flex;
-    /* justify-content: center; Let items start from left when wrapping */
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Allow items to wrap */
     background-color: var(--bg-primary);
-    height: auto; /* Adjust height automatically based on wrapped content */
-    min-height: var(--nav-height); /* Ensure minimum height */
+    height: var(--nav-height);
     margin-bottom: var(--nav-spacing);
     border-radius: var(--card-radius); /* Slight radius */
     box-shadow: var(--shadow-subtle); /* Subtle shadow */
     border: 1px solid var(--border-color);
-    padding: 5px 15px; /* Adjusted padding for wrapping */
+    padding: 0 15px;
     gap: 5px; /* Reduced gap */
-    position: sticky; /* Make navigation sticky */
-    top: 0;           /* Stick to the top of the viewport */
-    z-index: 990;     /* Ensure it stays above content below */
-    /* overflow-x: auto; Removed to prevent horizontal scrollbar */
+    position: relative;
+    overflow-x: auto; /* Allow scrolling on small screens */
 }
 
 .nav-item {
@@ -1018,28 +1005,4 @@ footer p {
 .disclaimer {
     margin-top: 10px;
     font-style: normal; /* Remove italic */
-}
-
-/* Back to Top Button Styles */
-#backToTopBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 30px; /* Place at the bottom */
-    right: 30px; /* Place on the right */
-    z-index: 999; /* Make sure it's above most other items */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    background-color: var(--accent-blue); /* Blue background */
-    color: white; /* White text */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 10px 15px; /* Some padding */
-    border-radius: var(--card-radius); /* Rounded corners */
-    font-size: 18px; /* Increase font size */
-    opacity: 0.8; /* Slightly transparent */
-    transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
-}
-
-#backToTopBtn:hover {
-    background-color: var(--text-primary); /* Darker background on hover */
-    opacity: 1;
 } 

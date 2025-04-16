@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Daily Report 🔥 - 2025年4月15日</title>
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
+    <!-- Removed inline styles -->
+    <!-- Removed inline script block -->
 </head>
 <body>
 
-    <!-- START: Added Sidebar HTML -->
+    <!-- START: Modified Sidebar HTML -->
+    <!-- Container for toggle button and vertical text -->
+    <div class="sidebar-toggle-container">
         <div class="sidebar-toggle" id="sidebarToggle" title="查看往期总结">
-         <div class="toggle-content"> <!-- Container for icon and text -->
-            <span class="toggle-icon">📜</span>
-            <span class="toggle-text">往期回顾</span>
+            <span>📜</span> <!-- Scroll icon -->
         </div>
+        <!-- Vertical text added below -->
+        <div class="sidebar-toggle-text">往期回顾</div>
     </div>
+
     <aside class="sidebar">
-        <!-- Note: Toggle button moved outside -->
+        <!-- Note: Toggle button is now outside in sidebar-toggle-container -->
         <div class="sidebar-content">
             <h3>往期群聊总结</h3>
             <ul class="year-list">
@@ -63,7 +69,7 @@
             </ul>
         </div>
     </aside>
-    <!-- END: Added Sidebar HTML -->
+    <!-- END: Modified Sidebar HTML -->
 
     <header>
         <h1>Daily Report 🔥</h1>
@@ -807,9 +813,7 @@
         <p class="disclaimer">免责声明：本报告由 AI 基于公开群聊讨论自动生成，可能存在错误或遗漏。如发现不当内容或侵权问题，请联系管理员处理。</p>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTopBtn" title="回到顶部">↑</button>
-
+    <!-- Link to external JS file (using defer is recommended) -->
     <script src="script.js" defer></script>
 </body>
 </html>
