@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>月入万刀预备队🔥日报 - 2025-04-15</title>
+    <title>Daily Report 🔥 - April 15, 2025</title>
     <style>
-        /* 严格定义的CSS样式，确保风格一致性 */
+        /* 苹果风格CSS样式定义 */
         :root {
-            --bg-primary: #0f0e17;
-            --bg-secondary: #1a1925;
-            --bg-tertiary: #252336;
-            --text-primary: #fffffe;
-            --text-secondary: #a7a9be;
-            --accent-primary: #ff8906;
-            --accent-secondary: #f25f4c;
-            --accent-tertiary: #e53170;
-            --accent-blue: #3da9fc;
-            --accent-purple: #7209b7;
-            --accent-cyan: #00b4d8;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #fafafa;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-primary: linear-gradient(135deg, #ff2d55, #ff9500);
+            --accent-secondary: linear-gradient(135deg, #5ac8fa, #007aff);
+            --accent-tertiary: linear-gradient(135deg, #af52de, #5e5ce6);
+            --accent-blue: #007aff;
+            --accent-purple: #5e5ce6;
+            --accent-cyan: #64d2ff;
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --card-radius: 12px;
+            --nav-height: 60px;
+            --nav-spacing: 20px;
         }
          
         * {
@@ -25,8 +30,22 @@
             box-sizing: border-box;
         }
          
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: local('SF Pro Display'), local('SFProDisplay-Regular');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'SF Pro Display';
+            src: local('SF Pro Display Bold'), local('SFProDisplay-Bold');
+            font-weight: bold;
+            font-style: normal;
+        }
+         
         body {
-            font-family: 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
@@ -34,20 +53,80 @@
             width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
         }
          
         header {
             text-align: center;
             padding: 30px 0;
             background-color: var(--bg-secondary);
-            margin-bottom: 30px;
+            margin-bottom: var(--nav-spacing);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-tertiary);
+            height: var(--nav-height);
+            margin-bottom: var(--nav-spacing);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-light);
+            padding: 0 20px;
+            gap: 10px;
+            position: relative;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            color: white;
+        }
+
+        .nav-indicator {
+            position: absolute;
+            height: 36px;
+            background: var(--accent-secondary);
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .nav-item {
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon {
+            margin-right: 6px;
+            font-size: 1.1em;
         }
          
         h1 {
             font-size: 36px;
-            font-weight: 700;
-            color: var(--accent-primary);
+            font-weight: 400;
+            font-family: 'PingFang SC', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--text-primary);
             margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
          
         .date {
@@ -64,36 +143,52 @@
          
         .meta-info span {
             background-color: var(--bg-tertiary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
         }
          
         section {
+            display: none;
             background-color: var(--bg-secondary);
             margin-bottom: 30px;
             padding: 25px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        section.active {
+            display: block;
         }
          
         h2 {
             font-size: 28px;
-            font-weight: 600;
-            color: var(--accent-blue);
+            font-weight: 400;
+            background: var(--accent-secondary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-blue);
+            border-bottom: 1px solid rgba(0, 122, 255, 0.2);
+            letter-spacing: -0.3px;
         }
          
         h3 {
             font-size: 22px;
-            font-weight: 600;
-            color: var(--accent-primary);
+            font-weight: 400;
+            background: var(--accent-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin: 15px 0 10px 0;
+            letter-spacing: -0.2px;
         }
          
         h4 {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--accent-secondary);
             margin: 12px 0 8px 0;
         }
@@ -133,6 +228,16 @@
         .dialogue-card, .qa-card, .participant-item, .night-owl-item {
             background-color: var(--bg-tertiary);
             padding: 20px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .topic-card:hover, .tutorial-card:hover, .message-card:hover, 
+        .dialogue-card:hover, .qa-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
         }
 
         .participant-item, .night-owl-item {
@@ -142,12 +247,15 @@
         /* 话题卡片 */
         .topic-category {
             display: inline-block;
-            background-color: var(--accent-blue);
-            color: var(--text-primary);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 14px;
+            background: var(--accent-secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
             margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 6px rgba(0, 122, 255, 0.2);
         }
          
         .topic-keywords {
@@ -158,10 +266,18 @@
         }
          
         .keyword {
-            background-color: rgba(61, 169, 252, 0.2);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 14px;
+            background-color: rgba(0, 122, 255, 0.08);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            color: var(--accent-blue);
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+        
+        .keyword:hover {
+            background-color: rgba(0, 122, 255, 0.15);
+            transform: scale(1.05);
         }
          
         .topic-mentions {
@@ -172,12 +288,15 @@
         /* 教程卡片 */
         .tutorial-type {
             display: inline-block;
-            background-color: var(--accent-secondary);
-            color: var(--text-primary);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 14px;
+            background: var(--accent-tertiary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
             margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+            box-shadow: 0 2px 6px rgba(94, 92, 230, 0.2);
         }
          
         .tutorial-meta {
@@ -244,7 +363,7 @@
         .dialogue-type {
             display: inline-block;
             background-color: var(--accent-purple);
-            color: var(--text-primary);
+            color: white;
             padding: 3px 10px;
             border-radius: 15px;
             font-size: 14px;
@@ -275,7 +394,7 @@
         }
 
         .dialogue-content .message-meta .speaker {
-            font-weight: bold;
+            font-weight: 400;
             color: var(--text-primary);
         }
          
@@ -307,7 +426,7 @@
         }
 
         .question-meta .asker, .answer-meta .responder {
-            font-weight: bold;
+            font-weight: 400;
             color: var(--text-primary);
         }
          
@@ -359,41 +478,55 @@
         }
          
         .heat-topic {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #1d1d1f;
         }
 
         .heat-details {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .heat-percentage {
             font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 5px;
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        .heat-count {
+            font-size: 13px;
+            color: #86868b;
         }
          
         .heat-bar {
-            height: 10px; /* Reduced height */
-            background-color: rgba(255, 255, 255, 0.1);
-            margin: 5px 0;
-            border-radius: 10px;
+            height: 6px;
+            background-color: #f5f5f7;
+            border-radius: 3px;
             overflow: hidden;
         }
          
         .heat-fill {
             height: 100%;
-            border-radius: 10px;
+            border-radius: 3px;
+            background-color: #007aff !important;
         }
          
         /* 话唠榜 */
-         .participant-info {
+        .participant-info {
             margin-left: 50px; /* Space for rank */
         }
 
         .participant-rank {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent-primary);
+            font-size: 24px;
+            font-weight: 600;
+            background: var(--accent-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-right: 15px;
             float: left;
             width: 35px; /* Ensure consistent alignment */
@@ -401,83 +534,91 @@
         }
          
         .participant-name {
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 4px;
             color: var(--text-primary);
         }
          
         .participant-count {
             color: var(--accent-cyan);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
          
         .participant-characteristics, .participant-words {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 6px;
+            margin-top: 8px;
         }
          
         .characteristic {
-            background-color: rgba(242, 95, 76, 0.2);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 14px;
+            background-color: rgba(255, 45, 85, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            color: var(--text-primary);
         }
          
         .word {
-            background-color: rgba(229, 49, 112, 0.2);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 14px;
+            background-color: rgba(175, 82, 222, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            color: var(--text-primary);
         }
          
         /* 熬夜冠军 */
         .night-owl-item {
-            background: linear-gradient(135deg, #1a1925 0%, #252336 100%);
+            background: #f5f5f7;
             padding: 20px;
-            display: flex;
-            align-items: center;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
         }
 
         .owl-info {
-            margin-left: 20px; /* Space for crown */
+            margin-left: 50px;
         }
          
         .owl-crown {
-            font-size: 40px;
-            margin-right: 20px;
+            font-size: 28px;
+            color: #ff9500;
             float: left;
+            width: 35px;
+            text-align: center;
         }
          
         .owl-name {
-            font-weight: 600;
+            font-weight: 400;
             font-size: 18px;
             margin-bottom: 5px;
             color: var(--text-primary);
         }
          
         .owl-title {
-            color: var(--accent-primary);
+            color: #ff9500;
             font-style: italic;
             margin-bottom: 10px;
         }
          
-        .owl-time, .owl-messages, .owl-last-message {
+        .owl-time, .owl-messages {
             color: var(--text-secondary);
             margin-bottom: 5px;
             font-size: 14px;
         }
 
         .owl-last-message {
-             word-break: break-word;
-             max-height: 3.2em; /* approx 2 lines */
-             overflow: hidden;
-             text-overflow: ellipsis;
-             display: -webkit-box;
-             -webkit-line-clamp: 2;
-             -webkit-box-orient: vertical;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 5px;
+            word-break: break-word;
+            max-height: 3.2em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
          
         .owl-note {
@@ -493,6 +634,9 @@
             margin: 0 auto;
             padding: 20px 0;
             min-height: 450px; /* Ensure space for cloud */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(245, 245, 247, 0.8));
+            border-radius: var(--card-radius);
+            overflow: hidden;
         }
          
         .cloud-wordcloud {
@@ -514,9 +658,13 @@
         .cloud-word {
             position: absolute;
             transform-origin: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             white-space: nowrap;
+            font-weight: 400;
+            letter-spacing: -0.3px;
+            background-clip: text;
+            -webkit-background-clip: text;
         }
          
         .cloud-word:hover {
@@ -547,11 +695,14 @@
         /* 底部 */
         footer {
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
             margin-top: 50px;
             background-color: var(--bg-secondary);
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-light);
+            letter-spacing: -0.1px;
         }
          
         footer p {
@@ -563,25 +714,77 @@
             font-style: italic;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有导航项和section
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('section');
+            const navigation = document.querySelector('.navigation');
+            
+            // 创建导航指示器
+            const indicator = document.createElement('div');
+            indicator.className = 'nav-indicator';
+            navigation.appendChild(indicator);
+            
+            // 设置指示器初始位置和宽度
+            function updateIndicator(item) {
+                indicator.style.width = `${item.offsetWidth}px`;
+                indicator.style.left = `${item.offsetLeft}px`;
+            }
+            
+            // 默认显示第一个section
+            sections[0].classList.add('active');
+            navItems[0].classList.add('active');
+            updateIndicator(navItems[0]);
+            
+            // 为每个导航项添加点击事件
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // 添加active类到当前点击的项
+                    item.classList.add('active');
+                    sections[index].classList.add('active');
+                    
+                    // 更新指示器位置
+                    updateIndicator(item);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
-        <h1>月入万刀预备队🔥日报</h1>
-        <p class="date">2025-04-14 ~ 2025-04-15</p>
+        <h1>Daily Report 🔥</h1>
+        <p class="date">April 14 - April 15, 2025</p>
         <div class="meta-info">
-            <span>总消息数：156</span>
-            <span>活跃用户：25</span>
-            <span>时间范围：2025-04-14 ~ 2025-04-15</span>
+            <span>156 Messages</span>
+            <span>25 Active Users</span>
+            <span>April 14 - April 15, 2025</span>
         </div>
     </header>
+
+    <nav class="navigation">
+        <a href="#hot-topics" class="nav-item active"><i class="icon">🔥</i> Hot Topics</a>
+        <a href="#tutorials" class="nav-item"><i class="icon">📚</i> Tutorials</a>
+        <a href="#messages" class="nav-item"><i class="icon">💬</i> Messages</a>
+        <a href="#dialogues" class="nav-item"><i class="icon">👥</i> Dialogues</a>
+        <a href="#qa" class="nav-item"><i class="icon">❓</i> Q&A</a>
+        <a href="#analytics" class="nav-item"><i class="icon">📊</i> Analytics</a>
+        <a href="#word-cloud" class="nav-item"><i class="icon">☁️</i> Word Cloud</a>
+    </nav>
  
-    <!-- 1. 今日讨论热点 -->
-    <section class="hot-topics">
-        <h2>今日讨论热点</h2>
+    <!-- 1. Hot Topics -->
+    <section id="hot-topics" class="hot-topics">
+        <h2>Today's Hot Topics</h2>
         <div class="topics-container">
             <div class="topic-card">
-                <h3>网站推广与SEO策略</h3>
-                <div class="topic-category">增长 & SEO</div>
+                <h3>Website Promotion & SEO Strategy</h3>
+                <div class="topic-category">Growth & SEO</div>
                 <p class="topic-summary">围绕网站上线后的推广展开，重点讨论了外链建设的难点与方法（高质量 vs 低质量、评论区外链、竞品分析工具 Ahrefs/Semrush 应用），社交媒体内容分发，以及内容营销（如为工具站添加Blog）对SEO的重要性。分享了利用AI辅助推广内容创作和外链策略的思路。</p>
                 <div class="topic-keywords">
                     <span class="keyword">外链</span>
@@ -596,8 +799,8 @@
                 <div class="topic-mentions">提及次数：约 45+</div>
             </div>
             <div class="topic-card">
-                <h3>AI建站工具与开发实践</h3>
-                <div class="topic-category">技术 & 工具</div>
+                <h3>AI Website Building Tools & Development Practices</h3>
+                <div class="topic-category">Technology & Tools</div>
                 <p class="topic-summary">深入交流了各种AI辅助开发工具的使用体验，包括Cursor、Claude、Bolt、V0、Github Codespaces、Augment等。讨论了它们在代码生成、UI设计、环境配置方面的优劣，以及Token限制、成本问题。分享了使用AI生成网站代码、解决开发问题的具体方法和提示词技巧。</p>
                 <div class="topic-keywords">
                     <span class="keyword">Cursor</span>
@@ -612,8 +815,8 @@
                 <div class="topic-mentions">提及次数：约 50+</div>
             </div>
             <div class="topic-card">
-                <h3>需求挖掘与站点验证</h3>
-                <div class="topic-category">产品 & 策略</div>
+                <h3>Demand Mining & Site Validation</h3>
+                <div class="topic-category">Product & Strategy</div>
                 <p class="topic-summary">探讨了如何发现和验证网站需求，方法包括基于词根扩展、利用Google Trends验证持续流量、分析搜索引擎结果页判断信息满足度。强调了研究已上线站点（如通过Tooli.it发现）并思考如何做得更好的重要性，认为这是验证需求并缩短产品验证周期的有效途径。</p>
                 <div class="topic-keywords">
                     <span class="keyword">需求挖掘</span>
@@ -628,7 +831,7 @@
              <div class="topic-card">
                 <h3>工具分享与技巧交流</h3>
                 <div class="topic-category">资源 & 技巧</div>
-                <p class="topic-summary">群友积极分享实用的工具、资源和技巧。包括Semrush/Similarweb的优惠购买渠道、Ahrefs免费外链查询工具、提高外链评论效率的浏览器插件、哥飞文章的AI知识库、Github Codespaces云开发环境以及Picgo图床工具。这些分享极大地丰富了群友的工具箱。</p>
+                <p class="topic-summary">群友积极分享实用的工具、资源和技巧。包括Semrush/Similarweb的优惠购买渠道、Ahrefs免费外链查询工具、提高外链评论效率的浏览器插件、哥飞文章的AI知识库、Github Codespaces云开发环境以及Picgo图床工具。这些分享极大丰富群友的工具箱。</p>
                 <div class="topic-keywords">
                     <span class="keyword">工具分享</span>
                     <span class="keyword">插件</span>
@@ -643,9 +846,9 @@
         </div>
     </section>
  
-    <!-- 2. 实用教程与资源分享 -->
-    <section class="tutorials">
-        <h2>实用教程与资源分享</h2>
+    <!-- 2. Tutorials -->
+    <section id="tutorials" class="tutorials">
+        <h2>Tutorials</h2>
         <div class="tutorials-container">
             <div class="tutorial-card">
                 <div class="tutorial-type">RESOURCE</div>
@@ -738,9 +941,9 @@
         </div>
     </section>
  
-    <!-- 3. 重要消息汇总 -->
-    <section class="important-messages">
-        <h2>重要消息汇总</h2>
+    <!-- 3. Messages -->
+    <section id="messages" class="important-messages">
+        <h2>Messages</h2>
         <div class="messages-container">
              <div class="message-card">
                 <div class="message-meta">
@@ -793,9 +996,9 @@
         </div>
     </section>
  
-    <!-- 4. 有趣对话或金句 -->
-    <section class="interesting-dialogues">
-        <h2>有趣对话或金句</h2>
+    <!-- 4. Dialogues -->
+    <section id="dialogues" class="interesting-dialogues">
+        <h2>Dialogues</h2>
         <div class="dialogues-container">
             <div class="dialogue-card">
                 <div class="dialogue-type">QUOTE</div>
@@ -877,9 +1080,9 @@
         </div>
     </section>
  
-    <!-- 5. 问题与解答 -->
-    <section class="questions-answers">
-        <h2>问题与解答</h2>
+    <!-- 5. Q&A -->
+    <section id="qa" class="questions-answers">
+        <h2>Q&A</h2>
         <div class="qa-container">
             <div class="qa-card">
                 <div class="question">
@@ -933,7 +1136,7 @@
                             <span class="time">2025-04-15</span>
                             <span class="accepted-badge">精华回答</span>
                         </div>
-                        <p class="answer-content">建议用 Cursor，内置 Claude 3.7 (Opus) 可以说是无限次使用（$20/月 Plan）。也可以尝试 Bolt（有Token限制，约68元淘宝）或 Github Codespaces（免费额度，云端环境）。</p>
+                        <p class="answer-content">建议用 Cursor，内置 Claude 3.7 (Opus) 说是无限次使用（$20/月 Plan）。也可以尝试 Bolt（有Token限制，约68元淘宝）或 Github Codespaces（免费额度，云端环境）。</p>
                     </div>
                      <div class="answer">
                         <div class="answer-meta">
@@ -972,9 +1175,9 @@
         </div>
     </section>
  
-    <!-- 6. 群内数据可视化 -->
-    <section class="analytics">
-        <h2>群内数据可视化</h2>
+    <!-- 6. Analytics -->
+    <section id="analytics" class="analytics">
+        <h2>Analytics</h2>
          
         <!-- 话题热度 -->
         <h3>话题热度</h3>
@@ -1153,9 +1356,9 @@
         </div>
     </section>
  
-    <!-- 7. 词云 -->
-    <section class="word-cloud">
-        <h2>热门词云</h2>
+    <!-- 7. Word Cloud -->
+    <section id="word-cloud" class="word-cloud">
+        <h2>Word Cloud</h2>
         <div class="cloud-container">
             <div class="cloud-wordcloud" id="word-cloud">
                 <!-- Generated words - positions and rotations are illustrative -->
@@ -1211,4 +1414,3 @@
     </footer>
 </body>
 </html>
-
