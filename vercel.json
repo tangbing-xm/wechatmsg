@@ -4,6 +4,6 @@
     { "src": "*.html", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/code.html" }
+    { "src": "/(.*)", "dest": "/4.16.html" }
   ]
 }
