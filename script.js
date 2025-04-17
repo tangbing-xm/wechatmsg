@@ -123,7 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navItems.forEach((item, index) => {
         item.addEventListener('click', function(e) {
-            // Allow hash change for navigation history
+            e.preventDefault(); // Prevent default anchor link scroll behavior
+
+            // Allow hash change for navigation history - Keep this behavior if desired
+            // If you want to *completely* remove the hash from the URL, comment out/remove the line below
+            // window.location.hash = item.getAttribute('href');
+
             navItems.forEach(nav => nav.classList.remove('active'));
             sections.forEach(section => section.classList.remove('active'));
             item.classList.add('active');
