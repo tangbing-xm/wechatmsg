@@ -1,0 +1,58 @@
+<!-- Container for toggle button and vertical text -->
+<div class="sidebar-toggle-container">
+    <div class="sidebar-toggle" id="sidebarToggle" title="查看往期总结">
+        <span>📜</span> <!-- Scroll icon -->
+    </div>
+    <!-- Vertical text -->
+    <div class="sidebar-toggle-text">往期回顾</div>
+</div>
+
+<aside class="sidebar">
+    <div class="sidebar-content">
+        <h3>往期群聊总结</h3>
+        <ul class="year-list">
+            <li>
+                <!-- Add expanded class here if you want 2025 to be open by default -->
+                <span class="toggle-item year-toggle expanded">2025年</span>
+                 <!-- Add expanded class here if you want April to be open by default -->
+                <ul class="month-list expanded">
+                    <li>
+                        <span class="toggle-item month-toggle expanded">4月</span>
+                        <ul class="day-list expanded"> <!-- Add expanded class here if you want days visible by default -->
+                            <!-- Add links to past reports. Use actual filenames when available -->
+                            <li><a href="4.14.html">14日</a></li>
+                            <!-- Add a class to highlight the link corresponding to the *current* page -->
+                            <!-- Note: Logic to dynamically add 'current-archive-link' might be needed in JS if this sidebar is used across different pages -->
+                            <li><a href="4.15.html">15日 (当前)</a></li>
+                            <!-- Add more days as reports are generated -->
+                            <!-- <li><a href="4.16.html">16日</a></li> -->
+                        </ul>
+                    </li>
+                    <!-- Example for May (initially hidden unless 'expanded' added) -->
+                    <!--
+                    <li>
+                        <span class="toggle-item month-toggle">5月</span>
+                        <ul class="day-list">
+                            <li><a href="5.1.html">1日</a></li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </li>
+             <!-- Example for 2026 (initially hidden unless 'expanded' added) -->
+             <!--
+            <li>
+                <span class="toggle-item year-toggle">2026年</span>
+                <ul class="month-list">
+                    <li>
+                        <span class="toggle-item month-toggle">1月</span>
+                         <ul class="day-list">
+                            <li><a href="2026-1.1.html">1日</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+             -->
+        </ul>
+    </div>
+</aside> 
