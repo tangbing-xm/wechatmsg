@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- !!! UPDATE: Title with correct date range !!! -->
+    <title>Daily Report 🔥 - 2025年4月19日-20日</title>
+    <!-- Link to external CSS file -->
+    <!-- Replace link with inline style -->
+    <style>
+    /* Notion风格CSS样式定义 */
+    :root {
+        --bg-primary: #FFFFFF; /* 主背景 - 白色 */
+        --bg-secondary: #F7F6F5; /* 次级背景 - Notion浅灰 */
+        --bg-tertiary: #FFFFFF; /* 卡片背景 - 白色 */
+        --text-primary: #37352F; /* 主文本 - Notion深灰 */
+        --text-secondary: #9B9A97; /* 次级文本 - Notion浅灰 */
+        --text-placeholder: #CFCACA; /* 占位符文本 */
+        --accent-blue: #2E7DD8; /* 链接/重点蓝色 */
+        --accent-gray: #5A5A5A; /* 重点灰色 */
+        --border-color: #E3E2E0; /* 边框颜色 */
+        --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05); /* 微妙阴影 */
+        --card-radius: 4px; /* Notion风格圆角 */
+        --nav-height: 50px; /* 导航栏高度 */
+        --nav-spacing: 15px; /* 间距 */
+
+        /* Notion Block Colors (Subtle Backgrounds) */
+        --block-gray: rgba(235, 236, 237, 0.5);
+        --block-blue: rgba(211, 229, 247, 0.5);
+        --block-yellow: rgba(251, 243, 219, 0.5);
+        --block-red: rgba(253, 226, 224, 0.5);
+        --block-purple: rgba(234, 228, 247, 0.5);
+        --block-cyan: rgba(216, 237, 243, 0.5);
+        --block-green: rgba(218, 240, 228, 0.5);
+
+         /* Notion Text Colors for Blocks */
+        --text-gray: #5a5a5a;
+        --text-blue: #2b67a8;
+        --text-yellow: #967413;
+        --text-red: #c43b38;
+        --text-purple: #6c58a9;
+        --text-cyan: #1f6f84;
+        --text-green: #2d734c;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: local('SF Pro Display'), local('SFProDisplay-Regular');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: local('SF Pro Display Bold'), local('SFProDisplay-Bold');
+        font-weight: bold; /* Use 600 for Notion-like bold */
+        font-style: normal;
+    }
+
+    body {
+        font-family: 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: var(--bg-secondary); /* Notion page background */
+        color: var(--text-primary);
+        line-height: 1.6;
+        font-size: 16px;
+        width: 1200px; /* Consider making it slightly narrower like Notion? 900px? */
+        max-width: 900px; /* Max width like Notion */
+        margin: 0 auto;
+        padding: 20px;
+        /* Add padding to the left to make space for the toggle */
+        padding-left: 60px; /* Adjust as needed based on toggle size */
+        position: relative; /* Needed for absolute positioning of sidebar */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+    }
+
+    /* --- START: Added Sidebar Styles --- */
+    .sidebar {
+        position: fixed; /* Keep sidebar fixed on the left */
+        left: 0;
+        top: 0;
+        height: 100vh; /* Full viewport height */
+        width: 260px; /* Width of the expanded sidebar */
+        background-color: var(--bg-primary); /* Match page background */
+        border-right: 1px solid var(--border-color);
+        transform: translateX(-100%); /* Initially hidden off-screen */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000; /* Ensure sidebar is above content */
+        overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds height */
+        font-size: 14px; /* Slightly smaller font for sidebar */
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    /* Container for the toggle button and vertical text */
+    .sidebar-toggle-container {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column; /* Arrange icon and text vertically */
+        align-items: center; /* Center items horizontally */
+        cursor: pointer;
+        z-index: 1001; /* Ensure it's above the sidebar */
+    }
+
+    .sidebar-toggle {
+        /* Remove fixed positioning, now handled by container */
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none; /* Reset transform */
+        /* Keep other styles: size, background, border, radius, flex, align, justify */
+        width: 35px;
+        height: 35px;
+        background-color: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Keep transition and animation, but animation name might change */
+        transition: background-color 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Start with a visible glow */
+        /* Updated animation for flashing white glow */
+        animation: flashing-white-glow 1.8s infinite ease-in-out;
+    }
+
+    /* Vertical text style */
+    .sidebar-toggle-text {
+        writing-mode: vertical-rl; /* Vertical text, right-to-left */
+        text-orientation: mixed;
+        color: var(--text-secondary);
+        font-size: 11px; /* Small font size */
+        margin-top: 8px; /* Space below the icon */
+        letter-spacing: 1px; /* Adjust letter spacing */
+        line-height: 1.6; /* Increased line height for comfortable spacing */
+        user-select: none; /* Prevent text selection */
+        transition: color 0.2s ease;
+    }
+
+    .sidebar-toggle-container:hover .sidebar-toggle {
+         background-color: var(--bg-secondary); /* Hover effect on container */
+         animation-play-state: paused; /* Pause glow on hover */
+         box-shadow: 0 0 14px 4px rgba(255, 255, 255, 1); /* Stronger white glow on hover */
+    }
+
+    .sidebar-toggle-container:hover .sidebar-toggle-text {
+        color: var(--text-primary); /* Darken text on hover */
+    }
+
+     .sidebar-toggle span {
+         font-size: 1.2em;
+         user-select: none; /* Prevent text selection */
+     }
+
+    /* Updated Glow animation for flashing white effect */
+    @keyframes flashing-white-glow {
+        0%, 100% { box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.4); } /* Slightly dimmer base */
+        50% { box-shadow: 0 0 18px 6px rgba(255, 255, 255, 1); }   /* Significantly stronger peak white glow */
+    }
+
+    .sidebar-content {
+        padding: 20px;
+        padding-top: 50px; /* Space for title */
+    }
+
+    .sidebar-content h3 {
+        font-size: 18px; /* Sidebar title size */
+        margin-bottom: 15px;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding-left: 0; /* Remove default padding */
+        margin-left: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 0; /* Reset margin */
+    }
+
+    .sidebar ul ul { /* Nested lists */
+         padding-left: 15px; /* Indentation for nested levels */
+         display: none; /* Initially hide months and days */
+         margin-top: 5px;
+    }
+
+    .sidebar ul ul.expanded {
+        display: block; /* Show when expanded */
+    }
+
+    .sidebar .toggle-item { /* Style for clickable year/month */
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 6px 0;
+        color: var(--text-primary);
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease;
+    }
+    .sidebar .toggle-item:hover {
+         background-color: var(--bg-secondary);
+    }
+
+    .sidebar .toggle-item::before { /* Arrow indicator */
+        content: '►'; /* Right arrow */
+        display: inline-block;
+        margin-right: 8px;
+        font-size: 0.8em;
+        transition: transform 0.2s ease;
+        color: var(--text-secondary);
+    }
+
+    .sidebar .toggle-item.expanded::before {
+        transform: rotate(90deg); /* Down arrow when expanded */
+    }
+
+    .sidebar .day-list li a {
+        display: block;
+        padding: 4px 0 4px 23px; /* Indent day links further + space for non-existent arrow */
+        color: var(--accent-blue);
+        text-decoration: none;
+        border-bottom: none; /* Remove default link underline */
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .sidebar .day-list li a:hover {
+        background-color: var(--block-blue);
+        color: var(--text-blue);
+    }
+     .sidebar .day-list li a.current-archive-link {
+        font-weight: 600;
+        color: var(--text-primary); /* Highlight current page */
+         background-color: var(--block-gray);
+    }
+    /* --- END: Added Sidebar Styles --- */
+
+    header {
+        text-align: center;
+        padding: 25px 0;
+        background-color: var(--bg-primary);
+        margin-bottom: var(--nav-spacing);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: none; /* Removed shadow */
+        border-radius: 0; /* Remove radius for header */
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-primary);
+        height: var(--nav-height);
+        margin-bottom: var(--nav-spacing);
+        border-radius: var(--card-radius); /* Slight radius */
+        box-shadow: var(--shadow-subtle); /* Subtle shadow */
+        border: 1px solid var(--border-color);
+        padding: 0 15px;
+        gap: 5px; /* Reduced gap */
+        position: relative;
+        overflow-x: auto; /* Allow scrolling on small screens */
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px; /* Adjusted padding */
+        color: var(--text-secondary);
+        text-decoration: none;
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease, color 0.2s ease;
+        font-weight: 500; /* Notion uses medium weight */
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .nav-item:hover {
+        background-color: rgba(0, 0, 0, 0.05); /* Notion hover effect */
+        color: var(--text-primary);
+    }
+
+    .nav-item.active {
+        color: var(--accent-blue); /* Active item blue */
+        background-color: var(--block-blue); /* Subtle blue background */
+    }
+
+    /* Remove the sliding indicator for Notion style */
+    .nav-indicator {
+       display: none;
+    }
+
+    .nav-item {
+        position: relative;
+        z-index: 2;
+    }
+
+    .icon {
+        margin-right: 4px; /* Reduced icon margin */
+        font-size: 1.0em;
+    }
+
+    h1 {
+        font-size: 32px; /* Slightly smaller H1 */
+        font-weight: 600; /* Bold */
+        font-family: inherit; /* Use body font */
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+    }
+
+    .date {
+        font-size: 16px; /* Smaller date */
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+    }
+
+    .meta-info {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .meta-info span {
+        background-color: var(--bg-secondary); /* Light gray background */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color); /* Subtle border */
+    }
+
+    section {
+        display: none;
+        background-color: var(--bg-primary); /* White background for sections */
+        margin-bottom: 25px; /* Adjusted margin */
+        padding: 20px;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow-subtle); /* Subtle shadow on sections */
+        border: 1px solid var(--border-color);
+    }
+
+    section.active {
+        display: block;
+    }
+
+    h2 {
+        font-size: 24px; /* Smaller H2 */
+        font-weight: 600;
+        background: none; /* Removed gradient */
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary); /* Default text color */
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color); /* Lighter border */
+        letter-spacing: -0.2px;
+    }
+
+    h3 {
+        font-size: 20px; /* Smaller H3 */
+        font-weight: 600;
+        background: none; /* Removed gradient */
+         -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary);
+        margin: 15px 0 10px 0;
+        letter-spacing: -0.1px;
+    }
+
+    h4 {
+        font-size: 17px; /* Smaller H4 */
+        font-weight: 600;
+        color: var(--text-primary); /* Consistent color */
+        margin: 12px 0 8px 0;
+    }
+
+    p {
+        margin-bottom: 10px; /* Reduced paragraph margin */
+    }
+
+    ul, ol {
+        margin-left: 25px; /* Adjusted indent */
+        margin-bottom: 10px;
+    }
+
+    li {
+        margin-bottom: 4px;
+    }
+
+    a {
+        color: var(--accent-blue);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(46, 125, 216, 0.3); /* Subtle underline for links */
+        transition: border-color 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration: none; /* Remove default hover underline */
+        border-bottom: 1px solid var(--accent-blue); /* Stronger underline on hover */
+    }
+
+    /* Remove underline for specific links if needed */
+    .tutorial-link a, .message-full-content a, .dialogue-content a, .answer a {
+        border-bottom: none;
+    }
+    .tutorial-link a:hover, .message-full-content a:hover, .dialogue-content a:hover, .answer a:hover {
+         border-bottom: 1px solid var(--accent-blue);
+    }
+     .tutorial-link .link.invalid, .message-full-content a.invalid, .dialogue-content a.invalid, .answer a.invalid {
+         text-decoration: line-through;
+         color: var(--text-secondary);
+         border-bottom: none;
+         pointer-events: none; /* Make it unclickable */
+     }
+     .tutorial-link .link.invalid:hover, .message-full-content a.invalid:hover, .dialogue-content a.invalid:hover, .answer a.invalid:hover {
+         border-bottom: none;
+     }
+
+    /* 卡片容器样式 */
+    .topics-container, .tutorials-container, .messages-container,
+    .dialogues-container, .qa-container, .participants-container, .night-owls-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px; /* Reduced gap */
+    }
+
+    /* 卡片样式 */
+    .topic-card, .tutorial-card, .message-card,
+    .dialogue-card, .qa-card, .participant-item, .night-owl-item {
+        background-color: var(--bg-tertiary);
+        padding: 15px; /* Reduced padding */
+        border-radius: var(--card-radius);
+        box-shadow: none; /* Remove individual card shadow */
+        border: 1px solid var(--border-color); /* Add border */
+        transition: background-color 0.2s ease;
+    }
+
+    .topic-card:hover, .tutorial-card:hover, .message-card:hover,
+    .dialogue-card:hover, .qa-card:hover {
+        background-color: rgba(0, 0, 0, 0.02); /* Subtle hover background */
+        transform: none; /* Remove transform */
+        box-shadow: none;
+    }
+
+    .participant-item, .night-owl-item {
+        overflow: hidden; /* Clear floats */
+        border: 1px solid var(--border-color);
+    }
+
+    /* 话题卡片 */
+    .topic-category {
+        display: inline-block;
+        background: var(--block-blue); /* Subtle blue background */
+        color: var(--text-blue); /* Blue text */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        box-shadow: none;
+    }
+
+    .topic-keywords {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 8px 0;
+    }
+
+    .keyword {
+        background-color: var(--block-gray); /* Subtle gray */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-gray); /* Gray text */
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
+
+    .keyword:hover {
+        background-color: rgba(0, 0, 0, 0.07);
+        transform: none;
+    }
+
+    .topic-mentions {
+        color: var(--text-secondary); /* Less prominent */
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    /* 教程卡片 */
+    .tutorial-type {
+        display: inline-block;
+        background: var(--block-purple); /* Subtle purple */
+        color: var(--text-purple); /* Purple text */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        box-shadow: none;
+    }
+
+    .tutorial-meta {
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .tutorial-meta span {
+        margin-right: 8px;
+    }
+
+    .tutorial-category {
+        margin-top: 8px;
+        font-style: normal; /* Remove italic */
+        color: var(--text-secondary);
+        font-size: 13px;
+    }
+
+    .tutorial-link .link {
+        word-break: break-all;
+    }
+
+    /* 消息卡片 */
+    .message-meta {
+        margin-bottom: 8px;
+    }
+
+    .message-meta span {
+        margin-right: 10px;
+        font-size: 13px;
+    }
+
+    .message-type {
+        color: var(--text-primary);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+        font-weight: 500;
+        font-size: 12px;
+        background-color: var(--block-gray);
+    }
+
+    .priority {
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-weight: 500;
+         font-size: 12px;
+    }
+
+    /* Notion Callout Styles for Priority */
+    .priority-high {
+         background: var(--block-red);
+         color: var(--text-red);
+    }
+
+    .priority-medium {
+         background: var(--block-yellow);
+         color: var(--text-yellow);
+    }
+
+    .priority-low {
+         background: var(--block-blue);
+         color: var(--text-blue);
+    }
+
+    .message-full-content {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid var(--border-color); /* Solid border */
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+    .message-full-content blockquote { /* Style for quoted text */
+        border-left: 3px solid var(--border-color);
+        padding-left: 10px;
+        margin: 8px 0 8px 5px;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+    .message-full-content .message-link-card { /* Style for shared link cards */
+        border: 1px solid var(--border-color);
+        border-radius: var(--card-radius);
+        padding: 10px;
+        margin: 8px 0;
+        background-color: var(--bg-secondary);
+        display: block; /* Make the link card a block element */
+        text-decoration: none; /* Remove default link underline */
+        color: inherit; /* Inherit text color */
+    }
+    .message-full-content .message-link-card:hover {
+         background-color: rgba(0, 0, 0, 0.02); /* Subtle hover */
+         border-bottom: none; /* Prevent underline on hover */
+    }
+    .message-full-content .message-link-card .link-title {
+        font-weight: 500;
+        color: var(--text-primary);
+        font-size: 14px;
+        display: block;
+    }
+     .message-full-content .message-link-card .link-description {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin: 4px 0;
+    }
+     .message-full-content .message-link-card .link-name {
+        font-size: 11px;
+        color: var(--text-secondary);
+        margin-top: 4px;
+    }
+
+    /* 对话卡片 */
+    .dialogue-type {
+        display: inline-block;
+        background-color: var(--block-purple);
+        color: var(--text-purple);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .dialogue-content {
+        background-color: var(--bg-secondary); /* Light gray background */
+        padding: 10px;
+        border-radius: var(--card-radius);
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+    }
+
+    .dialogue-content .message {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px dotted var(--border-color); /* Dotted border */
+    }
+    .dialogue-content .message:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .dialogue-content .message-meta {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+
+    .dialogue-content .message-meta .speaker {
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+    .dialogue-content .message p { /* Ensure message text inherits default styles */
+        color: var(--text-primary);
+        margin-bottom: 0; /* Remove paragraph margin inside message */
+    }
+    .dialogue-content .message blockquote { /* Style for quoted text */
+        border-left: 3px solid var(--border-color);
+        padding-left: 10px;
+        margin: 8px 0 8px 5px;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+
+    /* Notion Callout Style */
+    .dialogue-highlight {
+        font-style: normal;
+        color: var(--text-yellow); /* Use block text color */
+        margin: 10px 0;
+        font-weight: 400;
+        padding: 10px 15px;
+        background-color: var(--block-yellow); /* Use block background color */
+        border-left: 3px solid #F9C957; /* Matching solid border */
+        border-radius: var(--card-radius);
+    }
+
+    .dialogue-topic {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-top: 8px;
+    }
+
+    /* 问答卡片 */
+    .question {
+        margin-bottom: 10px;
+    }
+
+    .question-meta, .answer-meta {
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+        font-size: 13px;
+    }
+
+    .question-meta .asker, .answer-meta .responder {
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .question-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .tag {
+        background-color: var(--block-purple); /* Use block color */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-purple); /* Matching text color */
+        font-weight: 500;
+    }
+
+    .answers {
+        margin-top: 10px;
+    }
+
+    /* Notion Callout Style for Answer */
+    .answer {
+        background-color: var(--block-cyan); /* Use block color */
+        padding: 10px 15px;
+        margin-top: 8px;
+        border-left: 3px solid #64D2FF; /* Matching solid border */
+        border-radius: var(--card-radius);
+        color: var(--text-cyan);
+    }
+     .answer p { /* Ensure text inside adopts the color */
+        color: var(--text-cyan);
+        /* Reset margin if needed */
+        margin-bottom: 5px;
+    }
+     .answer .answer-meta,
+     .answer .answer-meta .responder {
+         color: var(--text-cyan); /* Meta text matches */
+         opacity: 0.8;
+     }
+      .answer .answer-meta .responder {
+         font-weight: 600; /* Bolder responder */
+         opacity: 1.0;
+     }
+
+
+    .answer .accepted-badge {
+        margin-left: 8px;
+        background: var(--block-green); /* Green for accepted */
+        color: var(--text-green);
+        padding: 2px 8px;
+        border-radius: var(--card-radius);
+        font-size: 11px;
+        vertical-align: middle;
+        font-weight: 500;
+        border: 1px solid rgba(45, 115, 76, 0.2); /* Subtle border */
+    }
+
+    /* 热度图 */
+    .heatmap-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px; /* Reduced gap */
+    }
+
+    .heat-item {
+        background-color: var(--bg-tertiary); /* White background */
+        padding: 10px 15px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+    }
+
+    .heat-topic {
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+    }
+
+    .heat-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .heat-percentage {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .heat-count {
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
+    .heat-bar {
+        height: 5px; /* Slimmer bar */
+        background-color: var(--bg-secondary); /* Gray background */
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .heat-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--accent-blue); /* Use accent blue */
+    }
+
+    /* 话唠榜 */
+    .participant-info {
+        margin-left: 40px; /* Reduced space */
+    }
+
+    .participant-rank {
+        font-size: 20px; /* Smaller rank */
+        font-weight: 600;
+        background: none; /* Remove gradient */
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary); /* Default text color */
+        margin-right: 10px;
+        float: left;
+        width: 30px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .participant-name {
+        font-weight: 500;
+        font-size: 15px; /* Slightly smaller */
+        margin-bottom: 3px;
+        color: var(--text-primary);
+    }
+
+    .participant-count {
+        color: var(--accent-blue);
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .participant-characteristics, .participant-words {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px; /* Reduced gap */
+        margin-top: 6px;
+    }
+
+    .characteristic {
+        background-color: var(--block-red);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-red);
+        font-weight: 500;
+    }
+
+    .word {
+        background-color: var(--block-purple);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-purple);
+        font-weight: 500;
+    }
+
+    /* 熬夜冠军 */
+    .night-owl-item {
+        background: var(--bg-tertiary);
+        padding: 15px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+    }
+
+    .owl-info {
+         margin-left: 40px; /* Reduced space */
+    }
+
+    .owl-crown {
+        font-size: 24px; /* Smaller crown */
+        color: #F9A825; /* Notion-like Yellow */
+        float: left;
+        width: 30px;
+        text-align: center;
+        line-height: 1;
+    }
+
+    .owl-name {
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+    }
+
+    .owl-title {
+        color: #F9A825;
+        font-style: normal; /* Remove italic */
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .owl-time, .owl-messages {
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+        font-size: 13px;
+    }
+
+    .owl-last-message {
+        color: var(--text-secondary);
+        font-size: 13px;
+        margin-bottom: 4px;
+        word-break: break-word;
+        max-height: 3.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        background: var(--bg-secondary); /* Use light gray */
+        padding: 5px 8px;
+        border-radius: var(--card-radius);
+        margin-top: 5px;
+        border: 1px solid var(--border-color);
+    }
+
+    .owl-note {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 8px;
+        font-style: normal;
+    }
+
+    /* 词云 - Simpler Style */
+    .cloud-container {
+        position: relative;
+        margin: 0 auto;
+        padding: 20px;
+        min-height: auto; /* Remove fixed height */
+        background: var(--bg-primary); /* White background */
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Remove cloud shape, use simple container */
+    .cloud-wordcloud {
+        position: relative;
+        width: 100%;
+        height: auto; /* Auto height */
+        margin: 0 auto;
+        background-color: transparent; /* No background shape */
+        border-radius: 0;
+        box-shadow: none;
+        text-align: center; /* Center words */
+         padding: 20px 0;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         align-items: center;
+         gap: 10px 15px;
+    }
+
+    .cloud-word {
+        position: static; /* Remove absolute positioning */
+        transform-origin: center;
+        text-shadow: none; /* Remove shadow */
+        transition: color 0.2s ease;
+        white-space: nowrap;
+        font-weight: 500;
+        letter-spacing: -0.1px;
+        transform: none !important; /* Remove rotation */
+        display: inline-block; /* Make words flow */
+        padding: 2px 5px;
+        border-radius: var(--card-radius);
+    }
+    /* Use different font sizes based on importance */
+     .cloud-word[style*="font-size: 44px"] { font-size: 28px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 40px"] { font-size: 26px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 38px"] { font-size: 24px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 36px"] { font-size: 22px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 32px"] { font-size: 20px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 30px"] { font-size: 19px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 28px"] { font-size: 18px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 26px"] { font-size: 17px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 24px"] { font-size: 16px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 22px"] { font-size: 15px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 21px"] { font-size: 15px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 20px"] { font-size: 14px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 19px"] { font-size: 14px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 18px"] { font-size: 13px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 17px"] { font-size: 13px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 16px"] { font-size: 12px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 15px"] { font-size: 12px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 14px"] { font-size: 12px !important; font-weight: 400; }
+
+    /* Assign Notion-like colors */
+    .cloud-word[style*="color: #007aff"] { color: var(--text-blue); } /* AI & Dev - Blue */
+    .cloud-word[style*="color: #ff9500"] { color: var(--text-yellow); } /* SEO & Growth - Yellow */
+    .cloud-word[style*="color: #5e5ce6"] { color: var(--text-purple); } /* Tools & Plugins - Purple */
+    .cloud-word[style*="color: #34c759"] { color: var(--text-green); } /* Platforms - Green */
+    .cloud-word[style*="color: #ff2d55"] { color: var(--text-red); } /* Website & Product - Red */
+    .cloud-word[style*="color: #ffcc00"] { color: var(--text-yellow); } /* Concepts - Yellow */
+    .cloud-word[style*="color: #5ac8fa"] { color: var(--text-cyan); } /* Environment - Cyan */
+    .cloud-word[style*="color: #af52de"] { color: var(--text-purple); } /* Plugin - Purple */
+
+
+    .cloud-word:hover {
+        transform: none !important;
+        background-color: var(--bg-secondary); /* Subtle background on hover */
+        cursor: default;
+    }
+
+    .cloud-legend {
+        margin-top: 25px; /* Adjusted margin */
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Reduced gap */
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px; /* Smaller gap */
+        font-size: 12px; /* Smaller font */
+        color: var(--text-secondary);
+    }
+
+    .legend-color {
+        width: 12px; /* Smaller circle */
+        height: 12px;
+        border-radius: 3px; /* Square like Notion */
+        border: 1px solid var(--border-color);
+    }
+
+    /* 底部 */
+    footer {
+        text-align: center;
+        padding: 20px 0; /* Reduced padding */
+        margin-top: 30px; /* Reduced margin */
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        font-size: 12px; /* Smaller font */
+        border-radius: 0; /* No radius */
+        box-shadow: none;
+        border-top: 1px solid var(--border-color); /* Add top border */
+        letter-spacing: 0px;
+    }
+
+    footer p {
+        margin: 4px 0;
+    }
+
+    .disclaimer {
+        margin-top: 10px;
+        font-style: normal; /* Remove italic */
+    }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Placeholder (dynamically filled by script.js) -->
+    <div id="sidebar-placeholder"></div>
+
+    <header>
+        <h1>Daily Report 🔥</h1>
+        <!-- !!! UPDATE: Date in header !!! -->
+        <p class="date">April 19 - 20, 2025</p>
+        <div class="meta-info">
+            <!-- !!! UPDATE: Message and user counts (Combined from 4.19-4.20.txt) !!! -->
+            <span>约 50+ 条消息</span> <!-- Estimated -->
+            <span>约 10+ 位活跃用户</span> <!-- Estimated -->
+            <span>群组: 月入万刀预备队🔥</span>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <!-- Navigation items - script.js handles active state based on hash -->
+        <a href="#hot-topics" class="nav-item"><i class="icon">🔥</i> Hot Topics</a>
+        <a href="#tutorials" class="nav-item"><i class="icon">📚</i> Tutorials</a>
+        <a href="#messages" class="nav-item"><i class="icon">💬</i> Messages</a>
+        <a href="#dialogues" class="nav-item"><i class="icon">👥</i> Dialogues</a>
+        <a href="#qa" class="nav-item"><i class="icon">❓</i> Q&A</a>
+        <a href="#analytics" class="nav-item"><i class="icon">📊</i> Analytics</a>
+        <a href="#word-cloud" class="nav-item"><i class="icon">☁️</i> Word Cloud</a>
+    </nav>
+
+    <!-- 1. Hot Topics -->
+    <section id="hot-topics" class="hot-topics">
+        <h2>期间热点话题 (4.19-4.20)</h2>
+        <div class="topics-container">
+            <!-- !!! FILL HERE: Add topic-card divs with combined content for April 19-20th !!! -->
+            <div class="topic-card">
+                <h3>Cursor 登录与账号问题</h3>
+                <div class="topic-category">工具与问题</div>
+                <p class="topic-summary">用户遇到使用 GitHub 登录 Cursor 失败的问题，收到疑似账号被锁或违规的提示。最终通过更换为 Google 邮箱登录成功解决。讨论了可能的原因（破解插件、临时邮箱等，均被用户否认），更换 WiFi 被认为不太可能导致此问题。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">Cursor</span>
+                    <span class="keyword">登录失败</span>
+                    <span class="keyword">GitHub</span>
+                    <span class="keyword">Google 邮箱</span>
+                    <span class="keyword">账号锁定</span>
+                    <span class="keyword">错误提示</span>
+                    <span class="keyword">解决方案</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 10+</div>
+            </div>
+            <div class="topic-card">
+                <h3>GitHub 推送错误排查</h3>
+                <div class="topic-category">技术与开发</div>
+                <p class="topic-summary">用户从 Cursor 推送代码到 GitHub 时遇到 "不是有效的库名" 错误。群友提供了多种排查思路和解决方案：检查是否为网络（梯子）问题、推荐使用 GitHub Desktop 客户端、检查仓库地址格式（应使用 SSH 地址而非 HTTPS）、建议尝试 Git 命令行推送、要求提供错误截图以便分析。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">GitHub</span>
+                    <span class="keyword">Cursor</span>
+                    <span class="keyword">推送错误</span>
+                    <span class="keyword">无效库名</span>
+                    <span class="keyword">SSH</span>
+                    <span class="keyword">HTTPS</span>
+                    <span class="keyword">GitHub Desktop</span>
+                    <span class="keyword">Git命令</span>
+                    <span class="keyword">网络问题</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 10+</div>
+            </div>
+             <div class="topic-card">
+                <h3>域名与 Cloudflare Pages 部署配置</h3>
+                <div class="topic-category">建站与部署</div>
+                <p class="topic-summary">讨论了如何将阿里云购买的域名（已备案）关联到部署在 Cloudflare Pages 上的网站（代码托管在 GitHub）。核心思路是将域名的 DNS 服务器修改为 Cloudflare 的 Nameservers，然后在 Cloudflare Pages 中添加自定义域名。与之前航海案例中 Spaceship 域名的操作类似，关键在于修改 DNS 服务商。用户在阿里云后台寻找 DNS 修改入口遇到困难。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">域名</span>
+                    <span class="keyword">阿里云</span>
+                    <span class="keyword">Cloudflare Pages</span>
+                    <span class="keyword">DNS</span>
+                    <span class="keyword">Nameserver</span>
+                    <span class="keyword">自定义域名</span>
+                    <span class="keyword">部署</span>
+                    <span class="keyword">备案</span>
+                    <span class="keyword">GitHub</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 15+</div>
+            </div>
+             <div class="topic-card">
+                <h3>资源与信息分享</h3>
+                <div class="topic-category">学习与交流</div>
+                <p class="topic-summary">期间分享了多个链接和信息：Anthropic 发布的 Claude 编码最佳实践、Cursor 相关工具导航站 `cursor.directory`、一篇关于跑通全球收付款流程的文章 (`艾逗笔`)。此外，还提及了生财同城线下局的体验，讨论了不同城市线下活动的质量和内容差异。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">资源分享</span>
+                    <span class="keyword">Claude</span>
+                    <span class="keyword">最佳实践</span>
+                    <span class="keyword">Cursor Directory</span>
+                    <span class="keyword">全球收付款</span>
+                    <span class="keyword">线下局</span>
+                    <span class="keyword">生财有术</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 10+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Tutorials -->
+    <section id="tutorials" class="tutorials">
+        <h2>教程与资源 (4.19-4.20)</h2>
+        <div class="tutorials-container">
+            <!-- !!! FILL HERE: Add tutorial-card divs with combined content for April 19-20th !!! -->
+            <div class="tutorial-card">
+                <div class="tutorial-type">资源分享</div>
+                <h3>Claude 编码最佳实践 (Anthropic)</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：曲直</span>
+                    <span class="share-time">2025-04-19</span>
+                </div>
+                <p class="tutorial-summary">分享了 Anthropic 官方发布的关于使用 Claude 进行 Agentic Coding (代理式编码) 的最佳实践指南。对于希望更有效利用 Claude 进行编程任务的用户可能很有价值。</p>
+                 <div class="tutorial-link">
+                    <a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="link valid" target="_blank">Claude Code: Best practices for agentic coding</a>
+                </div>
+                <div class="tutorial-category">分类：AI编程 / Claude / 最佳实践 / Agentic Coding</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">资源分享</div>
+                <h3>Cursor 相关工具导航站</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：曲直</span>
+                    <span class="share-time">2025-04-20</span>
+                </div>
+                <p class="tutorial-summary">分享了一个收录 Cursor 相关工具或资源的导航网站。</p>
+                 <div class="tutorial-link">
+                    <a href="https://cursor.directory" class="link valid" target="_blank">cursor.directory</a>
+                </div>
+                <div class="tutorial-category">分类：Cursor / 工具导航 / 资源</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">资源分享</div>
+                <h3>全球收付款流程文章</h3>
+                 <div class="tutorial-meta">
+                    <span class="shared-by">分享者：曲直</span>
+                    <span class="share-time">2025-04-20</span>
+                </div>
+                <p class="tutorial-summary">分享了一篇来自公众号“艾逗笔”关于跑通全球收款和付款流程的文章，对做出海业务或需要处理跨境支付的用户可能有参考价值。</p>
+                 <div class="tutorial-link">
+                    <a href="#" class="link invalid" target="_blank">[链接] 我跑通了全球收付款的流程 (具体链接未抓取，需查看原消息)</a>
+                </div>
+                <div class="tutorial-category">分类：出海 / 跨境支付 / 全球收款 / 付款流程</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">技巧/工具推荐</div>
+                <h3>GitHub 推送问题解决方案</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：牡丹江-东淼 / 哈皮 / 灰兔</span>
+                    <span class="share-time">2025-04-20</span>
+                </div>
+                <p class="tutorial-summary">针对从 Cursor 推送 GitHub 报错的问题，群友提供了多种解决方案建议：1. 使用 <a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a> 客户端进行推送。 2. 检查仓库地址，确保使用 SSH 格式 (git@github.com:...) 而非 HTTPS 格式。 3. 首次推送或遇到问题时，尝试使用 Git 命令行进行操作，通常能提供更详细的错误信息。</p>
+                 <div class="key-points">
+                    <h4>建议方案：</h4>
+                    <ul>
+                        <li>使用 GitHub Desktop 客户端</li>
+                        <li>检查并使用 SSH 仓库地址</li>
+                        <li>尝试 Git 命令行推送</li>
+                        <li>检查网络/VPN设置</li>
+                    </ul>
+                </div>
+                <div class="tutorial-category">分类：Git / GitHub / Cursor / 版本控制 / 错误处理 / 工具推荐</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">技巧/流程</div>
+                <h3>国内域名 (阿里云) 配置 Cloudflare Pages</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：灰兔</span>
+                    <span class="share-time">2025-04-20</span>
+                </div>
+                <p class="tutorial-summary">介绍了将国内购买的域名（如阿里云）指向部署在 Cloudflare Pages 上的网站的通用方法：核心步骤是在域名注册商（阿里云）的管理后台，找到 DNS 修改设置，将域名的 DNS 服务器 (Nameservers) 地址修改为 Cloudflare 提供的地址。修改完成后，即可在 Cloudflare Pages 项目中添加该自定义域名。此方法适用于任何域名注册商。</p>
+                 <div class="key-points">
+                    <h4>核心步骤：</h4>
+                    <ol>
+                        <li>登录域名注册商后台 (如阿里云万网)。</li>
+                        <li>找到对应域名的 DNS 修改/管理入口。</li>
+                        <li>将 DNS 服务器地址 (Nameservers) 修改为 Cloudflare 提供的地址 (通常有2个)。</li>
+                        <li>等待 DNS 生效 (可能需要几分钟到几小时)。</li>
+                        <li>在 Cloudflare Pages 项目设置中添加自定义域名。</li>
+                    </ol>
+                    <h4>注意：</h4>
+                    <ul>
+                         <li>国内购买的域名用于国内访问的网站通常需要完成 ICP 备案。</li>
+                         <li>在阿里云后台寻找 DNS 修改入口可能不直观，需要仔细查找或咨询客服。</li>
+                     </ul>
+                </div>
+                <div class="tutorial-category">分类：域名 / DNS / Cloudflare / 部署 / 网站配置 / 阿里云</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Messages -->
+    <section id="messages" class="important-messages">
+        <h2>重要消息与提醒 (4.19-4.20)</h2>
+        <div class="messages-container">
+            <!-- !!! FILL HERE: Add message-card divs with combined content for April 19-20th !!! -->
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-20</span>
+                    <span class="sender">旺仔_广州 / 厦门-糖饼 / 恒之</span>
+                    <span class="message-type">工具问题/解决</span>
+                    <span class="priority priority-high">优先级：高</span>
+                </div>
+                <p class="message-content">用户 Cursor 使用 GitHub 登录持续失败，提示可能违规。排除插件、破解、临时邮箱等原因后，【更换为 Google 邮箱登录成功】。</p>
+                 <div class="message-full-content">
+                    <p>遇到类似 Cursor 登录问题，尤其是特定登录方式（如 GitHub）失败时，可以尝试更换关联的邮箱或登录方式（如 Google）。</p>
+                </div>
+            </div>
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-20</span>
+                    <span class="sender">鹏翼-北京-Lv1 / 哈皮 / 灰兔</span>
+                    <span class="message-type">技术问题/建议</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">从 Cursor 推送 GitHub 报错 "不是有效的库名"，建议【检查仓库地址是否为 SSH 格式】(git@...)，或尝试使用 GitHub Desktop、Git 命令行进行推送。</p>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-20</span>
+                    <span class="sender">曲直 / 灰兔</span>
+                    <span class="message-type">技术问题/建议</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">将国内购买的域名 (如阿里云) 指向 Cloudflare Pages 部署的网站，需要在域名注册商处【将 DNS 服务器修改为 Cloudflare 的 Nameservers】。国内域名用于面向国内用户的网站需注意【备案】要求。</p>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-20</span>
+                    <span class="sender">厦门-糖饼</span>
+                    <span class="message-type">行业信息</span>
+                    <span class="priority priority-low">优先级：低</span>
+                </div>
+                <p class="message-content">提及线下生财同城局讨论内容，反映出部分圈子关注点在于联合收割副业流量，内容质量参差不齐。</p>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-19/20</span>
+                    <span class="sender">曲直</span>
+                    <span class="message-type">资源分享</span>
+                    <span class="priority priority-low">优先级：低</span>
+                </div>
+                <p class="message-content">分享了 Claude 编码最佳实践、Cursor Directory 导航站、全球收付款流程文章等资源。</p>
+                 <div class="message-full-content">
+                    <p>Claude Best Practices: <a href="https://www.anthropic.com/engineering/claude-code-best-practices" target="_blank">Link</a></p>
+                    <p>Cursor Directory: <a href="https://cursor.directory" target="_blank">Link</a></p>
+                    <p>全球收付款文章: (链接见原消息)</p>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Dialogues -->
+    <section id="dialogues" class="interesting-dialogues">
+        <h2>精彩对话 (4.19-4.20)</h2>
+        <div class="dialogues-container">
+            <!-- !!! FILL HERE: Add dialogue-card divs with combined content for April 19-20th !!! -->
+            <div class="dialogue-card">
+                <div class="dialogue-type">Cursor 登录故障排除</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">旺仔_广州</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>这个问题有人遇到过吗 用github登录还是不行</p>
+                        <p>【图片消息 - 显示错误提示，可能与账户/机器有关】</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>你的机器被锁死了 你用插件破解了吧</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">旺仔_广州</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>没用过任何插件、任何破解版 ... 我能想到的可能会违规的就只是换过好几个wifi</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>那这个提示就莫名其妙了 换其他账号不行了嘛 ... 笔记本电脑换wifi 挺正常 不是这个原因 换邮箱吧 谷歌或者github 听它的</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">恒之</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>你是不是用那种临时邮箱注册的无限换用的账号？ 这个情况只在他们那种无限重新注册白嫖的情况下看到</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">旺仔_广州</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>一直都只有一个账号 现在换成谷歌邮箱可以了</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">用户遇到 Cursor 通过 GitHub 登录失败并收到疑似封禁提示的问题。在排除了使用破解插件、临时邮箱等常见违规操作后，最终通过【更换登录邮箱（从 GitHub 改为 Google）】成功解决了问题。</div>
+                <div class="dialogue-topic">相关话题：Cursor, GitHub 登录, 账号问题, 错误排查, Google 登录, 解决方案</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">GitHub 推送错误诊断</div>
+                <div class="dialogue-content">
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">鹏翼-北京-Lv1</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>利用cursor推送到GitHub总是显示不是有效的库名 ，这种一般是什么问题？如何解决呢</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">哈皮</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>梯子问题？ ... git推送仓库地址是git开头，不是http开头 检查下仓库地址 ... 不是，要选第二个ssh那个</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">牡丹江-东淼</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>用Github desktop 这个软件好用</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>你用git 命令试试看有没有类似情况</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">灰兔</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>第一次推送，用命令行比较省事</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">针对 Cursor 推送 GitHub 报“无效库名”错误，群友集思广益，提出了检查网络（VPN）、使用 GitHub Desktop 客户端、核对仓库地址格式（推荐使用 SSH 地址）、尝试 Git 命令行等多种排查方向和解决方案。</div>
+                <div class="dialogue-topic">相关话题：GitHub, Cursor, Git Push, 错误处理, SSH vs HTTPS, GitHub Desktop, 命令行</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">国内域名接入 Cloudflare Pages</div>
+                 <div class="dialogue-content">
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">曲直</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>请教大家，我朋友在阿里云买了一个域名，然后我帮他做了一个网站...部署到了 cloudflare pages里面，现在要怎么去设置关联到买购买的这个域名呢？...航海里面域名是从 spaceship 买的，不知道 阿里云买的是不是一样的操作[破涕为笑]</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">哈皮</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>国内的域名的域名需要备案吧</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">灰兔</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>把阿里云的域名dns改到cf，然后自定义域名应该就可以了...哪个平台买的域名都把dns服务改成cf，后续都一样了</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">曲直</span> <span class="time">2025-04-20</span>
+                        </div>
+                        <p>我找了半天没找到可以修改 DNS 的地方[捂脸]</p>
+                    </div>
+                 </div>
+                <div class="dialogue-highlight">探讨将国内购买（如阿里云）并备案的域名指向部署在 Cloudflare Pages 上的网站的方法。核心思路是修改域名注册商处的 DNS 服务器为 Cloudflare 的 Nameservers，此操作与国外域名注册商一致。用户在阿里云后台查找 DNS 修改入口遇到困难。</div>
+                 <div class="dialogue-topic">相关话题：域名解析, DNS, Cloudflare Pages, 阿里云, 自定义域名, 备案, 网站部署</div>
+            </div>
+            <!-- Add more dialogue-card divs as needed -->
+        </div>
+    </section>
+
+    <!-- 5. Q&A -->
+    <section id="qa" class="questions-answers">
+        <h2>问答精选 (4.19-4.20)</h2>
+        <div class="qa-container">
+            <!-- !!! FILL HERE: Add qa-card divs with combined content for April 19-20th !!! -->
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">旺仔_广州</span>
+                        <span class="time">2025-04-20</span>
+                    </div>
+                    <p class="question-content">用 GitHub 登录 Cursor 失败，提示账号/机器问题，怎么办？</p>
+                    <div class="question-tags">
+                        <span class="tag">Cursor</span>
+                        <span class="tag">GitHub登录</span>
+                        <span class="tag">账号问题</span>
+                        <span class="tag">错误排查</span>
+                        <span class="tag">登录失败</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">厦门-糖饼 / 恒之 / 旺仔_广州</span>
+                            <span class="time">2025-04-20</span>
+                            <span class="accepted-badge">已解决</span>
+                        </div>
+                        <p>1. <strong>排查常见原因：</strong> 确认未使用破解插件、临时邮箱等违规行为。更换 WiFi 网络通常不是导致问题的原因。
+                           <br>2. <strong>尝试更换登录方式：</strong> 按照错误提示，尝试更换关联的邮箱或登录方式。
+                           <br>3. <strong>最终方案：</strong> 提问者【更换为 Google 邮箱登录】后成功解决。
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">鹏翼-北京-Lv1</span>
+                        <span class="time">2025-04-20</span>
+                    </div>
+                    <p class="question-content">用 Cursor 推送代码到 GitHub 时，总是显示 "不是有效的库名" 错误，是什么原因？如何解决？</p>
+                    <div class="question-tags">
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Cursor</span>
+                        <span class="tag">Git Push</span>
+                        <span class="tag">错误信息</span>
+                        <span class="tag">版本控制</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">哈皮 / 牡丹江-东淼 / 厦门-糖饼 / 灰兔</span>
+                            <span class="time">2025-04-20</span>
+                            <span class="accepted-badge">解决方案建议</span>
+                        </div>
+                        <p>可能的原因及解决方案：
+                           <br>1. <strong>网络问题：</strong> 检查 VPN/代理设置是否正常。
+                           <br>2. <strong>仓库地址格式错误：</strong> 确认使用的仓库地址是 【SSH 格式】 (`git@github.com:user/repo.git`) 而不是 HTTPS 格式 (`https://...`)。在 GitHub 仓库页面复制 SSH 地址。
+                           <br>3. <strong>工具问题：</strong> 尝试使用其他 Git 客户端，如官方推荐的 <a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a>。
+                           <br>4. <strong>命令行排查：</strong> 使用 Git 命令行 (`git push ...`) 进行推送，通常会返回更详细的错误信息，有助于定位问题。
+                           <br>5. <strong>权限/配置问题：</strong> 如果是首次推送或更换了机器/密钥，可能需要检查 SSH Key 是否正确配置并添加到 GitHub 账户。
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">曲直</span>
+                        <span class="time">2025-04-20</span>
+                    </div>
+                    <p class="question-content">在阿里云买的域名，如何关联到部署在 Cloudflare Pages 上的网站 (代码在 GitHub)？</p>
+                    <div class="question-tags">
+                        <span class="tag">域名解析</span>
+                        <span class="tag">阿里云</span>
+                        <span class="tag">Cloudflare Pages</span>
+                        <span class="tag">DNS配置</span>
+                        <span class="tag">网站部署</span>
+                        <span class="tag">备案</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">哈皮 / 灰兔</span>
+                            <span class="time">2025-04-20</span>
+                            <span class="accepted-badge">核心步骤</span>
+                        </div>
+                        <p>1. <strong>国内域名备案：</strong> 首先，确认该阿里云域名是否已完成 ICP 备案（国内服务器访问必须）。
+                           <br>2. <strong>修改 DNS 服务器：</strong> 登录【阿里云】的域名管理控制台，找到该域名的 DNS 修改设置，将其 DNS 服务器 (Nameservers) 地址更改为【Cloudflare 提供】的 Nameserver 地址。
+                           <br>3. <strong>等待 DNS 生效：</strong> DNS 修改需要一定时间在全球范围内生效，通常几分钟到几小时不等。
+                           <br>4. <strong>Cloudflare 添加域名：</strong> DNS 生效后，在你的 Cloudflare 账户中添加该域名，并根据指引完成验证。
+                           <br>5. <strong>CF Pages 配置：</strong> 在 Cloudflare Pages 项目的设置中，找到“自定义域 (Custom domains)”选项，添加你已在 Cloudflare 验证过的域名。
+                           <br>6. <strong>注意：</strong> 核心操作与在任何其他注册商（如 Spaceship）购买的域名一致，关键在于修改 DNS 服务器指向 Cloudflare。在阿里云后台找到 DNS 修改入口是关键步骤。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Analytics -->
+    <section id="analytics" class="analytics">
+        <h2>数据分析 (4.19-4.20)</h2>
+        <!-- !!! UPDATE: All analytics data based on combined April 19-20th records !!! -->
+        <h3>话题热度图</h3>
+        <div class="heatmap-container">
+            <!-- Add heat-item divs with updated data -->
+             <div class="heat-item">
+                <div class="heat-topic">域名与 Cloudflare Pages 部署配置</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">30%</div>
+                    <div class="heat-count">约 15+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 30%; background: var(--accent-blue);"></div>
+                </div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">Cursor 登录与账号问题</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">20%</div>
+                    <div class="heat-count">约 10+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 20%; background: #F9A825;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">GitHub 推送错误排查</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">20%</div>
+                    <div class="heat-count">约 10+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 20%; background: #6c58a9;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">资源与信息分享 (Claude/支付/线下局等)</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">20%</div>
+                    <div class="heat-count">约 10+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 20%; background: #c43b38;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">其他闲聊</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">10%</div>
+                    <div class="heat-count">约 5+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 10%; background: var(--accent-gray);"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>发言排行榜</h3>
+        <div class="participants-container">
+            <!-- Add participant-item divs with updated data (based on 4.19-4.20.txt) -->
+            <div class="participant-item">
+                <div class="participant-rank">1</div>
+                <div class="participant-info">
+                    <div class="participant-name">曲直</div>
+                    <div class="participant-count">约 12 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">资源分享</span>
+                        <span class="characteristic">问题提出 (域名)</span>
+                        <span class="characteristic">信息澄清</span>
+                        <span class="characteristic">积极互动</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">链接</span>
+                        <span class="word">域名</span>
+                        <span class="word">Cloudflare</span>
+                        <span class="word">阿里云</span>
+                        <span class="word">DNS</span>
+                        <span class="word">分享</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">2</div>
+                <div class="participant-info">
+                    <div class="participant-name">厦门-糖饼</div>
+                    <div class="participant-count">约 6 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">问题解答 (Cursor/GitHub)</span>
+                        <span class="characteristic">经验分享 (线下局)</span>
+                        <span class="characteristic">信息关联 (航海)</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Cursor</span>
+                        <span class="word">邮箱</span>
+                        <span class="word">Git命令</span>
+                        <span class="word">线下局</span>
+                        <span class="word">航海</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">3</div>
+                <div class="participant-info">
+                    <div class="participant-name">哈皮</div>
+                    <div class="participant-count">约 6 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">问题解答 (GitHub/域名)</span>
+                        <span class="characteristic">信息追问 (线下局)</span>
+                        <span class="characteristic">积极互动</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">GitHub</span>
+                        <span class="word">SSH</span>
+                        <span class="word">域名</span>
+                        <span class="word">备案</span>
+                        <span class="word">分享</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">4</div>
+                <div class="participant-info">
+                    <div class="participant-name">旺仔_广州</div>
+                    <div class="participant-count">约 5 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">问题提出 (Cursor登录)</span>
+                        <span class="characteristic">问题反馈</span>
+                        <span class="characteristic">寻求帮助</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Cursor</span>
+                        <span class="word">GitHub</span>
+                        <span class="word">登录</span>
+                        <span class="word">邮箱</span>
+                        <span class="word">问题</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">5</div>
+                <div class="participant-info">
+                    <div class="participant-name">灰兔</div>
+                    <div class="participant-count">约 3 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">技术解答 (GitHub/域名)</span>
+                        <span class="characteristic">经验建议</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">GitHub</span>
+                        <span class="word">命令行</span>
+                        <span class="word">DNS</span>
+                        <span class="word">Cloudflare</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">6</div>
+                <div class="participant-info">
+                    <div class="participant-name">鹏翼-北京-Lv1</div>
+                    <div class="participant-count">约 2 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">问题提出 (GitHub推送)</span>
+                        <span class="characteristic">寻求帮助</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Cursor</span>
+                        <span class="word">GitHub</span>
+                        <span class="word">推送</span>
+                        <span class="word">库名</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more participants if needed -->
+        </div>
+
+        <h3>熬夜冠军</h3>
+        <div class="night-owls-container">
+             <!-- Update night-owl-item div with updated data -->
+            <div class="night-owl-item">
+                 <div class="owl-crown" title="深夜探索者">🦉</div>
+                 <div class="owl-info">
+                    <div class="owl-name">曲直 / 灰兔</div>
+                    <div class="owl-title">深夜部署问题研究员</div>
+                    <div class="owl-time">活跃时间：较晚 (4月20日晚)</div>
+                    <div class="owl-messages">关键深夜消息：关于阿里云域名如何修改 DNS 指向 Cloudflare 的讨论</div>
+                     <div class="owl-last-message">曲直: 我找了半天没找到可以修改 DNS 的地方[捂脸] / 灰兔: 把阿里云的域名dns改到cf...</div>
+                    <div class="owl-note">注：根据日志末尾仍在积极讨论域名与部署问题的用户授予此称号。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Word Cloud -->
+    <section id="word-cloud" class="word-cloud">
+        <h2>词云图 (4.19-4.20)</h2>
+         <!-- !!! UPDATE: Word cloud words, sizes, and colors based on combined April 19-20th data !!! -->
+        <div class="cloud-container">
+            <div class="cloud-wordcloud" id="word-cloud-content">
+                <!-- Add span elements for words -->
+                <span class="cloud-word" style="font-size: 28px; color: var(--text-purple); font-weight: 600;">Cursor</span>
+                <span class="cloud-word" style="font-size: 26px; color: var(--text-green); font-weight: 600;">GitHub</span>
+                <span class="cloud-word" style="font-size: 24px; color: var(--text-red); font-weight: 600;">域名</span>
+                <span class="cloud-word" style="font-size: 22px; color: var(--text-green); font-weight: 500;">Cloudflare</span>
+                <span class="cloud-word" style="font-size: 20px; color: var(--text-red); font-weight: 500;">问题</span>
+                <span class="cloud-word" style="font-size: 19px; color: var(--text-cyan); font-weight: 500;">登录</span>
+                <span class="cloud-word" style="font-size: 18px; color: var(--text-cyan); font-weight: 500;">邮箱</span>
+                <span class="cloud-word" style="font-size: 17px; color: var(--text-red); font-weight: 500;">推送</span>
+                <span class="cloud-word" style="font-size: 16px; color: var(--text-yellow); font-weight: 400;">DNS</span>
+                <span class="cloud-word" style="font-size: 15px; color: var(--text-red); font-weight: 400;">报错</span>
+                <span class="cloud-word" style="font-size: 15px; color: var(--text-blue); font-weight: 400;">分享</span>
+                <span class="cloud-word" style="font-size: 14px; color: var(--text-green); font-weight: 400;">阿里云</span>
+                <span class="cloud-word" style="font-size: 14px; color: var(--text-purple); font-weight: 400;">SSH</span>
+                <span class="cloud-word" style="font-size: 13px; color: var(--text-blue); font-weight: 400;">链接</span>
+                <span class="cloud-word" style="font-size: 13px; color: var(--text-red); font-weight: 400;">地址</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-blue); font-weight: 400;">Claude</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-yellow); font-weight: 400;">备案</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-purple); font-weight: 400;">命令行</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-cyan); font-weight: 400;">账号</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-yellow); font-weight: 400;">线下局</span>
+            </div>
+            <div class="cloud-legend">
+                <!-- Legend remains the same unless categories change -->
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-blue);"></span>
+                    <span class="legend-label">AI 与开发</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-yellow);"></span>
+                    <span class="legend-label">SEO 与增长</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-purple);"></span>
+                    <span class="legend-label">工具与插件</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-green);"></span>
+                    <span class="legend-label">平台/资源</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-red);"></span>
+                    <span class="legend-label">网站与问题</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-cyan);"></span>
+                    <span class="legend-label">账户/概念</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 页面底部 -->
+    <footer>
+        <p>数据来源：月入万刀预备队🔥 聊天记录</p>
+        <!-- !!! UPDATE: Generation time and period !!! -->
+        <p>生成时间：<span class="generation-time">2025-04-21 10:00:00</span></p> <!-- Placeholder time -->
+        <p>统计周期：2025-04-19 ~ 2025-04-20</p>
+        <p class="disclaimer">免责声明：本报告由 AI 基于公开群聊讨论自动生成，可能存在错误或遗漏。如发现不当内容或侵权问题，请联系管理员处理。</p>
+    </footer>
+
+    <!-- Link to external JS file (using defer is recommended) -->
+    <!-- Replace script src with inline script -->
+    <!-- <script src="script.js" defer></script> --> <!-- Keeping this line commented out -->
+    <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to load and insert the sidebar
+        function loadSidebar() {
+            fetch('sidebar.html') // Fetch the sidebar component
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    const placeholder = document.getElementById('sidebar-placeholder');
+                    if (placeholder) {
+                        placeholder.innerHTML = html; // Insert the HTML
+                        initializeSidebarLogic(); // Initialize its JS AFTER insertion
+                        updateCurrentArchiveLink(); // Highlight current page link
+                    } else {
+                        console.error('Sidebar placeholder not found!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching or inserting sidebar:', error);
+                    // Optionally, provide fallback behavior or hide sidebar toggle if load fails
+                    const toggleContainer = document.querySelector('.sidebar-toggle-container');
+                    if (toggleContainer) toggleContainer.style.display = 'none';
+                });
+        }
+
+        // Function to set up sidebar event listeners
+        function initializeSidebarLogic() {
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggleContainer = document.querySelector('.sidebar-toggle-container');
+            let sidebarTimeout;
+
+            if (sidebarToggleContainer && sidebar) {
+                // Event listener for hovering over the toggle area (icon + text)
+                sidebarToggleContainer.addEventListener('mouseover', function() {
+                    clearTimeout(sidebarTimeout);
+                    sidebar.classList.add('active');
+                });
+
+                // Event listener for mouse leaving the toggle area
+                sidebarToggleContainer.addEventListener('mouseout', function() {
+                    sidebarTimeout = setTimeout(() => {
+                        if (!sidebar.matches(':hover')) { // Check if mouse is NOT over the sidebar itself
+                            sidebar.classList.remove('active');
+                        }
+                    }, 300); // Delay before hiding
+                });
+
+                // Event listener for hovering over the sidebar itself
+                sidebar.addEventListener('mouseover', function() {
+                    clearTimeout(sidebarTimeout); // Cancel any pending hide timeout
+                });
+
+                // Event listener for mouse leaving the sidebar
+                sidebar.addEventListener('mouseout', function(e) {
+                    // Check if the mouse moved to the toggle container; if so, don't hide
+                     if (!sidebarToggleContainer.contains(e.relatedTarget)) {
+                         sidebarTimeout = setTimeout(() => {
+                              if (!sidebarToggleContainer.matches(':hover')) { // Also check toggle isn't hovered
+                                  sidebar.classList.remove('active');
+                              }
+                         }, 300);
+                     }
+                });
+
+                // Sidebar hierarchy toggle logic
+                const toggleItems = document.querySelectorAll('.sidebar .toggle-item');
+                toggleItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        const sublist = this.nextElementSibling;
+                        if (sublist && sublist.tagName === 'UL') {
+                            const isExpanded = sublist.classList.toggle('expanded');
+                            this.classList.toggle('expanded', isExpanded);
+                        }
+                    });
+                });
+            } else {
+                console.error("Sidebar elements (.sidebar or .sidebar-toggle-container) not found after injection.");
+            }
+        }
+
+        // Function to highlight the current page link in the sidebar
+        function updateCurrentArchiveLink() {
+            // Use a more robust way to get the current filename
+            const pathParts = window.location.pathname.split('/');
+            const currentPagePath = pathParts.pop() || pathParts.pop(); // Handles trailing slash
+
+            if (!currentPagePath) return; // Exit if no filename found
+
+            const sidebarLinks = document.querySelectorAll('.sidebar .day-list a');
+
+            sidebarLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (linkPath === currentPagePath) {
+                    link.classList.add('current-archive-link');
+
+                    // Expand parents: Day List -> Month Toggle -> Month List -> Year Toggle
+                    let currentElement = link;
+                    while(currentElement && currentElement !== document.body) {
+                        const parentList = currentElement.closest('ul');
+                        if (parentList) {
+                            parentList.classList.add('expanded');
+                            const toggleItem = parentList.previousElementSibling;
+                             if (toggleItem && toggleItem.classList.contains('toggle-item')) {
+                                toggleItem.classList.add('expanded');
+                                currentElement = toggleItem;
+                            } else {
+                                break;
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+
+                } else {
+                    link.classList.remove('current-archive-link');
+                }
+            });
+        }
+
+        // --- Initialize Tab Navigation --- (Can run independently)
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
+        function activateTab(index) {
+            sections.forEach((section, i) => {
+                section.classList.toggle('active', i === index);
+            });
+            navItems.forEach((nav, i) => {
+                nav.classList.toggle('active', i === index);
+            });
+        }
+
+        if (sections.length > 0 && navItems.length > 0) {
+            let activeIndex = 0; // Default to first tab
+            const hash = window.location.hash.substring(1); // Get hash without '#'
+
+            if (hash) {
+                const targetSection = document.getElementById(hash);
+                if (targetSection) {
+                    const sectionIndex = Array.from(sections).indexOf(targetSection);
+                    if (sectionIndex !== -1) {
+                        activeIndex = sectionIndex;
+                    }
+                }
+            }
+
+            activateTab(activeIndex); // Activate the determined tab
+
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default anchor jump
+                    const targetHash = item.getAttribute('href');
+
+                    if (history.pushState) {
+                        history.pushState(null, null, targetHash);
+                    } else {
+                        window.location.hash = targetHash; // Fallback
+                    }
+
+                    activateTab(index); // Activate the clicked tab
+                });
+            });
+
+             // Optional: Handle back/forward button navigation
+            window.addEventListener('popstate', function() {
+                 let popIndex = 0;
+                 const popHash = window.location.hash.substring(1);
+                 if (popHash) {
+                     const targetSection = document.getElementById(popHash);
+                     if (targetSection) {
+                         const sectionIndex = Array.from(sections).indexOf(targetSection);
+                         if (sectionIndex !== -1) {
+                             popIndex = sectionIndex;
+                         }
+                     }
+                 }
+                 activateTab(popIndex);
+            });
+
+        }
+
+        // --- Load Sidebar --- (Starts fetching)
+        loadSidebar();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- !!! UPDATE: Title with correct date !!! -->
+    <title>Daily Report 🔥 - 2025年4月17日</title>
+    <!-- Link to external CSS file -->
+    <!-- Replace link with inline style -->
+    <style>
+    /* Notion风格CSS样式定义 */
+    :root {
+        --bg-primary: #FFFFFF; /* 主背景 - 白色 */
+        --bg-secondary: #F7F6F5; /* 次级背景 - Notion浅灰 */
+        --bg-tertiary: #FFFFFF; /* 卡片背景 - 白色 */
+        --text-primary: #37352F; /* 主文本 - Notion深灰 */
+        --text-secondary: #9B9A97; /* 次级文本 - Notion浅灰 */
+        --text-placeholder: #CFCACA; /* 占位符文本 */
+        --accent-blue: #2E7DD8; /* 链接/重点蓝色 */
+        --accent-gray: #5A5A5A; /* 重点灰色 */
+        --border-color: #E3E2E0; /* 边框颜色 */
+        --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05); /* 微妙阴影 */
+        --card-radius: 4px; /* Notion风格圆角 */
+        --nav-height: 50px; /* 导航栏高度 */
+        --nav-spacing: 15px; /* 间距 */
+
+        /* Notion Block Colors (Subtle Backgrounds) */
+        --block-gray: rgba(235, 236, 237, 0.5);
+        --block-blue: rgba(211, 229, 247, 0.5);
+        --block-yellow: rgba(251, 243, 219, 0.5);
+        --block-red: rgba(253, 226, 224, 0.5);
+        --block-purple: rgba(234, 228, 247, 0.5);
+        --block-cyan: rgba(216, 237, 243, 0.5);
+        --block-green: rgba(218, 240, 228, 0.5);
+
+         /* Notion Text Colors for Blocks */
+        --text-gray: #5a5a5a;
+        --text-blue: #2b67a8;
+        --text-yellow: #967413;
+        --text-red: #c43b38;
+        --text-purple: #6c58a9;
+        --text-cyan: #1f6f84;
+        --text-green: #2d734c;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: local('SF Pro Display'), local('SFProDisplay-Regular');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: local('SF Pro Display Bold'), local('SFProDisplay-Bold');
+        font-weight: bold; /* Use 600 for Notion-like bold */
+        font-style: normal;
+    }
+
+    body {
+        font-family: 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: var(--bg-secondary); /* Notion page background */
+        color: var(--text-primary);
+        line-height: 1.6;
+        font-size: 16px;
+        width: 1200px; /* Consider making it slightly narrower like Notion? 900px? */
+        max-width: 900px; /* Max width like Notion */
+        margin: 0 auto;
+        padding: 20px;
+        /* Add padding to the left to make space for the toggle */
+        padding-left: 60px; /* Adjust as needed based on toggle size */
+        position: relative; /* Needed for absolute positioning of sidebar */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+    }
+
+    /* --- START: Added Sidebar Styles --- */
+    .sidebar {
+        position: fixed; /* Keep sidebar fixed on the left */
+        left: 0;
+        top: 0;
+        height: 100vh; /* Full viewport height */
+        width: 260px; /* Width of the expanded sidebar */
+        background-color: var(--bg-primary); /* Match page background */
+        border-right: 1px solid var(--border-color);
+        transform: translateX(-100%); /* Initially hidden off-screen */
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000; /* Ensure sidebar is above content */
+        overflow-y: auto; /* Allow scrolling within the sidebar if content exceeds height */
+        font-size: 14px; /* Slightly smaller font for sidebar */
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    /* Container for the toggle button and vertical text */
+    .sidebar-toggle-container {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column; /* Arrange icon and text vertically */
+        align-items: center; /* Center items horizontally */
+        cursor: pointer;
+        z-index: 1001; /* Ensure it's above the sidebar */
+    }
+
+    .sidebar-toggle {
+        /* Remove fixed positioning, now handled by container */
+        position: relative; 
+        left: auto;
+        top: auto;
+        transform: none; /* Reset transform */
+        /* Keep other styles: size, background, border, radius, flex, align, justify */
+        width: 35px;
+        height: 35px;
+        background-color: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Keep transition and animation, but animation name might change */
+        transition: background-color 0.2s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Start with a visible glow */
+        /* Updated animation for flashing white glow */
+        animation: flashing-white-glow 1.8s infinite ease-in-out;
+    }
+
+    /* Vertical text style */
+    .sidebar-toggle-text {
+        writing-mode: vertical-rl; /* Vertical text, right-to-left */
+        text-orientation: mixed;
+        color: var(--text-secondary);
+        font-size: 11px; /* Small font size */
+        margin-top: 8px; /* Space below the icon */
+        letter-spacing: 1px; /* Adjust letter spacing */
+        line-height: 1.6; /* Increased line height for comfortable spacing */
+        user-select: none; /* Prevent text selection */
+        transition: color 0.2s ease;
+    }
+
+    .sidebar-toggle-container:hover .sidebar-toggle {
+         background-color: var(--bg-secondary); /* Hover effect on container */
+         animation-play-state: paused; /* Pause glow on hover */
+         box-shadow: 0 0 14px 4px rgba(255, 255, 255, 1); /* Stronger white glow on hover */
+    }
+
+    .sidebar-toggle-container:hover .sidebar-toggle-text {
+        color: var(--text-primary); /* Darken text on hover */
+    }
+
+     .sidebar-toggle span {
+         font-size: 1.2em;
+         user-select: none; /* Prevent text selection */
+     }
+
+    /* Updated Glow animation for flashing white effect */
+    @keyframes flashing-white-glow {
+        0%, 100% { box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.4); } /* Slightly dimmer base */
+        50% { box-shadow: 0 0 18px 6px rgba(255, 255, 255, 1); }   /* Significantly stronger peak white glow */
+    }
+
+    .sidebar-content {
+        padding: 20px;
+        padding-top: 50px; /* Space for title */
+    }
+
+    .sidebar-content h3 {
+        font-size: 18px; /* Sidebar title size */
+        margin-bottom: 15px;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding-left: 0; /* Remove default padding */
+        margin-left: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 0; /* Reset margin */
+    }
+
+    .sidebar ul ul { /* Nested lists */
+         padding-left: 15px; /* Indentation for nested levels */
+         display: none; /* Initially hide months and days */
+         margin-top: 5px;
+    }
+
+    .sidebar ul ul.expanded {
+        display: block; /* Show when expanded */
+    }
+
+    .sidebar .toggle-item { /* Style for clickable year/month */
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 6px 0;
+        color: var(--text-primary);
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease;
+    }
+    .sidebar .toggle-item:hover {
+         background-color: var(--bg-secondary);
+    }
+
+    .sidebar .toggle-item::before { /* Arrow indicator */
+        content: '►'; /* Right arrow */
+        display: inline-block;
+        margin-right: 8px;
+        font-size: 0.8em;
+        transition: transform 0.2s ease;
+        color: var(--text-secondary);
+    }
+
+    .sidebar .toggle-item.expanded::before {
+        transform: rotate(90deg); /* Down arrow when expanded */
+    }
+
+    .sidebar .day-list li a {
+        display: block;
+        padding: 4px 0 4px 23px; /* Indent day links further + space for non-existent arrow */
+        color: var(--accent-blue);
+        text-decoration: none;
+        border-bottom: none; /* Remove default link underline */
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .sidebar .day-list li a:hover {
+        background-color: var(--block-blue);
+        color: var(--text-blue);
+    }
+     .sidebar .day-list li a.current-archive-link {
+        font-weight: 600;
+        color: var(--text-primary); /* Highlight current page */
+         background-color: var(--block-gray);
+    }
+    /* --- END: Added Sidebar Styles --- */
+
+    header {
+        text-align: center;
+        padding: 25px 0;
+        background-color: var(--bg-primary);
+        margin-bottom: var(--nav-spacing);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: none; /* Removed shadow */
+        border-radius: 0; /* Remove radius for header */
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-primary);
+        height: var(--nav-height);
+        margin-bottom: var(--nav-spacing);
+        border-radius: var(--card-radius); /* Slight radius */
+        box-shadow: var(--shadow-subtle); /* Subtle shadow */
+        border: 1px solid var(--border-color);
+        padding: 0 15px;
+        gap: 5px; /* Reduced gap */
+        position: relative;
+        overflow-x: auto; /* Allow scrolling on small screens */
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px; /* Adjusted padding */
+        color: var(--text-secondary);
+        text-decoration: none;
+        border-radius: var(--card-radius);
+        transition: background-color 0.2s ease, color 0.2s ease;
+        font-weight: 500; /* Notion uses medium weight */
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .nav-item:hover {
+        background-color: rgba(0, 0, 0, 0.05); /* Notion hover effect */
+        color: var(--text-primary);
+    }
+
+    .nav-item.active {
+        color: var(--accent-blue); /* Active item blue */
+        background-color: var(--block-blue); /* Subtle blue background */
+    }
+
+    /* Remove the sliding indicator for Notion style */
+    .nav-indicator {
+       display: none;
+    }
+
+    .nav-item {
+        position: relative;
+        z-index: 2;
+    }
+
+    .icon {
+        margin-right: 4px; /* Reduced icon margin */
+        font-size: 1.0em;
+    }
+
+    h1 {
+        font-size: 32px; /* Slightly smaller H1 */
+        font-weight: 600; /* Bold */
+        font-family: inherit; /* Use body font */
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+    }
+
+    .date {
+        font-size: 16px; /* Smaller date */
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+    }
+
+    .meta-info {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .meta-info span {
+        background-color: var(--bg-secondary); /* Light gray background */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color); /* Subtle border */
+    }
+
+    section {
+        display: none;
+        background-color: var(--bg-primary); /* White background for sections */
+        margin-bottom: 25px; /* Adjusted margin */
+        padding: 20px;
+        border-radius: var(--card-radius);
+        box-shadow: var(--shadow-subtle); /* Subtle shadow on sections */
+        border: 1px solid var(--border-color);
+    }
+
+    section.active {
+        display: block;
+    }
+
+    h2 {
+        font-size: 24px; /* Smaller H2 */
+        font-weight: 600;
+        background: none; /* Removed gradient */
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary); /* Default text color */
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color); /* Lighter border */
+        letter-spacing: -0.2px;
+    }
+
+    h3 {
+        font-size: 20px; /* Smaller H3 */
+        font-weight: 600;
+        background: none; /* Removed gradient */
+         -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary);
+        margin: 15px 0 10px 0;
+        letter-spacing: -0.1px;
+    }
+
+    h4 {
+        font-size: 17px; /* Smaller H4 */
+        font-weight: 600;
+        color: var(--text-primary); /* Consistent color */
+        margin: 12px 0 8px 0;
+    }
+
+    p {
+        margin-bottom: 10px; /* Reduced paragraph margin */
+    }
+
+    ul, ol {
+        margin-left: 25px; /* Adjusted indent */
+        margin-bottom: 10px;
+    }
+
+    li {
+        margin-bottom: 4px;
+    }
+
+    a {
+        color: var(--accent-blue);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(46, 125, 216, 0.3); /* Subtle underline for links */
+        transition: border-color 0.2s ease;
+    }
+
+    a:hover {
+        text-decoration: none; /* Remove default hover underline */
+        border-bottom: 1px solid var(--accent-blue); /* Stronger underline on hover */
+    }
+
+    /* Remove underline for specific links if needed */
+    .tutorial-link a, .message-full-content a, .dialogue-content a, .answer a {
+        border-bottom: none;
+    }
+    .tutorial-link a:hover, .message-full-content a:hover, .dialogue-content a:hover, .answer a:hover {
+         border-bottom: 1px solid var(--accent-blue);
+    }
+
+    /* 卡片容器样式 */
+    .topics-container, .tutorials-container, .messages-container,
+    .dialogues-container, .qa-container, .participants-container, .night-owls-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px; /* Reduced gap */
+    }
+
+    /* 卡片样式 */
+    .topic-card, .tutorial-card, .message-card,
+    .dialogue-card, .qa-card, .participant-item, .night-owl-item {
+        background-color: var(--bg-tertiary);
+        padding: 15px; /* Reduced padding */
+        border-radius: var(--card-radius);
+        box-shadow: none; /* Remove individual card shadow */
+        border: 1px solid var(--border-color); /* Add border */
+        transition: background-color 0.2s ease;
+    }
+
+    .topic-card:hover, .tutorial-card:hover, .message-card:hover,
+    .dialogue-card:hover, .qa-card:hover {
+        background-color: rgba(0, 0, 0, 0.02); /* Subtle hover background */
+        transform: none; /* Remove transform */
+        box-shadow: none;
+    }
+
+    .participant-item, .night-owl-item {
+        overflow: hidden; /* Clear floats */
+        border: 1px solid var(--border-color);
+    }
+
+    /* 话题卡片 */
+    .topic-category {
+        display: inline-block;
+        background: var(--block-blue); /* Subtle blue background */
+        color: var(--text-blue); /* Blue text */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        box-shadow: none;
+    }
+
+    .topic-keywords {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 8px 0;
+    }
+
+    .keyword {
+        background-color: var(--block-gray); /* Subtle gray */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-gray); /* Gray text */
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
+
+    .keyword:hover {
+        background-color: rgba(0, 0, 0, 0.07);
+        transform: none;
+    }
+
+    .topic-mentions {
+        color: var(--text-secondary); /* Less prominent */
+        font-weight: 400;
+        font-size: 13px;
+    }
+
+    /* 教程卡片 */
+    .tutorial-type {
+        display: inline-block;
+        background: var(--block-purple); /* Subtle purple */
+        color: var(--text-purple); /* Purple text */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        letter-spacing: 0px;
+        box-shadow: none;
+    }
+
+    .tutorial-meta {
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .tutorial-meta span {
+        margin-right: 8px;
+    }
+
+    .tutorial-category {
+        margin-top: 8px;
+        font-style: normal; /* Remove italic */
+        color: var(--text-secondary);
+        font-size: 13px;
+    }
+
+    .tutorial-link .link {
+        word-break: break-all;
+    }
+
+    /* 消息卡片 */
+    .message-meta {
+        margin-bottom: 8px;
+    }
+
+    .message-meta span {
+        margin-right: 10px;
+        font-size: 13px;
+    }
+
+    .message-type {
+        color: var(--text-primary);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+        font-weight: 500;
+        font-size: 12px;
+        background-color: var(--block-gray);
+    }
+
+    .priority {
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-weight: 500;
+         font-size: 12px;
+    }
+
+    /* Notion Callout Styles for Priority */
+    .priority-high {
+         background: var(--block-red);
+         color: var(--text-red);
+    }
+
+    .priority-medium {
+         background: var(--block-yellow);
+         color: var(--text-yellow);
+    }
+
+    .priority-low {
+         background: var(--block-blue);
+         color: var(--text-blue);
+    }
+
+    .message-full-content {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid var(--border-color); /* Solid border */
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+    .message-full-content blockquote { /* Style for quoted text */
+        border-left: 3px solid var(--border-color);
+        padding-left: 10px;
+        margin: 8px 0 8px 5px;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+    .message-full-content .message-link-card { /* Style for shared link cards */
+        border: 1px solid var(--border-color);
+        border-radius: var(--card-radius);
+        padding: 10px;
+        margin: 8px 0;
+        background-color: var(--bg-secondary);
+    }
+    .message-full-content .message-link-card .link-title {
+        font-weight: 500;
+        color: var(--text-primary);
+        font-size: 14px;
+        display: block;
+    }
+     .message-full-content .message-link-card .link-description {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin: 4px 0;
+    }
+     .message-full-content .message-link-card .link-name {
+        font-size: 11px;
+        color: var(--text-secondary);
+        margin-top: 4px;
+    }
+
+    /* 对话卡片 */
+    .dialogue-type {
+        display: inline-block;
+        background-color: var(--block-purple);
+        color: var(--text-purple);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .dialogue-content {
+        background-color: var(--bg-secondary); /* Light gray background */
+        padding: 10px;
+        border-radius: var(--card-radius);
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+    }
+
+    .dialogue-content .message {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px dotted var(--border-color); /* Dotted border */
+    }
+    .dialogue-content .message:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .dialogue-content .message-meta {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+
+    .dialogue-content .message-meta .speaker {
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+    .dialogue-content .message p { /* Ensure message text inherits default styles */
+        color: var(--text-primary);
+        margin-bottom: 0; /* Remove paragraph margin inside message */
+    }
+    .dialogue-content .message blockquote { /* Style for quoted text */
+        border-left: 3px solid var(--border-color);
+        padding-left: 10px;
+        margin: 8px 0 8px 5px;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+
+    /* Notion Callout Style */
+    .dialogue-highlight {
+        font-style: normal;
+        color: var(--text-yellow); /* Use block text color */
+        margin: 10px 0;
+        font-weight: 400;
+        padding: 10px 15px;
+        background-color: var(--block-yellow); /* Use block background color */
+        border-left: 3px solid #F9C957; /* Matching solid border */
+        border-radius: var(--card-radius);
+    }
+
+    .dialogue-topic {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-top: 8px;
+    }
+
+    /* 问答卡片 */
+    .question {
+        margin-bottom: 10px;
+    }
+
+    .question-meta, .answer-meta {
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+        font-size: 13px;
+    }
+
+    .question-meta .asker, .answer-meta .responder {
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .question-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    .tag {
+        background-color: var(--block-purple); /* Use block color */
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-purple); /* Matching text color */
+        font-weight: 500;
+    }
+
+    .answers {
+        margin-top: 10px;
+    }
+
+    /* Notion Callout Style for Answer */
+    .answer {
+        background-color: var(--block-cyan); /* Use block color */
+        padding: 10px 15px;
+        margin-top: 8px;
+        border-left: 3px solid #64D2FF; /* Matching solid border */
+        border-radius: var(--card-radius);
+        color: var(--text-cyan);
+    }
+     .answer p { /* Ensure text inside adopts the color */
+        color: var(--text-cyan);
+        /* Reset margin if needed */
+        margin-bottom: 5px;
+    }
+     .answer .answer-meta,
+     .answer .answer-meta .responder {
+         color: var(--text-cyan); /* Meta text matches */
+         opacity: 0.8;
+     }
+      .answer .answer-meta .responder {
+         font-weight: 600; /* Bolder responder */
+         opacity: 1.0;
+     }
+
+
+    .answer .accepted-badge {
+        margin-left: 8px;
+        background: var(--block-green); /* Green for accepted */
+        color: var(--text-green);
+        padding: 2px 8px;
+        border-radius: var(--card-radius);
+        font-size: 11px;
+        vertical-align: middle;
+        font-weight: 500;
+        border: 1px solid rgba(45, 115, 76, 0.2); /* Subtle border */
+    }
+
+    /* 热度图 */
+    .heatmap-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px; /* Reduced gap */
+    }
+
+    .heat-item {
+        background-color: var(--bg-tertiary); /* White background */
+        padding: 10px 15px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+    }
+
+    .heat-topic {
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: var(--text-primary);
+    }
+
+    .heat-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .heat-percentage {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .heat-count {
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
+    .heat-bar {
+        height: 5px; /* Slimmer bar */
+        background-color: var(--bg-secondary); /* Gray background */
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .heat-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--accent-blue); /* Use accent blue */
+    }
+
+    /* 话唠榜 */
+    .participant-info {
+        margin-left: 40px; /* Reduced space */
+    }
+
+    .participant-rank {
+        font-size: 20px; /* Smaller rank */
+        font-weight: 600;
+        background: none; /* Remove gradient */
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--text-primary); /* Default text color */
+        margin-right: 10px;
+        float: left;
+        width: 30px;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .participant-name {
+        font-weight: 500;
+        font-size: 15px; /* Slightly smaller */
+        margin-bottom: 3px;
+        color: var(--text-primary);
+    }
+
+    .participant-count {
+        color: var(--accent-blue);
+        margin-bottom: 8px;
+        font-size: 13px;
+    }
+
+    .participant-characteristics, .participant-words {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px; /* Reduced gap */
+        margin-top: 6px;
+    }
+
+    .characteristic {
+        background-color: var(--block-red);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-red);
+        font-weight: 500;
+    }
+
+    .word {
+        background-color: var(--block-purple);
+        padding: 3px 10px;
+        border-radius: var(--card-radius);
+        font-size: 12px;
+        color: var(--text-purple);
+        font-weight: 500;
+    }
+
+    /* 熬夜冠军 */
+    .night-owl-item {
+        background: var(--bg-tertiary);
+        padding: 15px;
+        border-radius: var(--card-radius);
+        border: 1px solid var(--border-color);
+    }
+
+    .owl-info {
+         margin-left: 40px; /* Reduced space */
+    }
+
+    .owl-crown {
+        font-size: 24px; /* Smaller crown */
+        color: #F9A825; /* Notion-like Yellow */
+        float: left;
+        width: 30px;
+        text-align: center;
+        line-height: 1;
+    }
+
+    .owl-name {
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+    }
+
+    .owl-title {
+        color: #F9A825;
+        font-style: normal; /* Remove italic */
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .owl-time, .owl-messages {
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+        font-size: 13px;
+    }
+
+    .owl-last-message {
+        color: var(--text-secondary);
+        font-size: 13px;
+        margin-bottom: 4px;
+        word-break: break-word;
+        max-height: 3.2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        background: var(--bg-secondary); /* Use light gray */
+        padding: 5px 8px;
+        border-radius: var(--card-radius);
+        margin-top: 5px;
+        border: 1px solid var(--border-color);
+    }
+
+    .owl-note {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 8px;
+        font-style: normal;
+    }
+
+    /* 词云 - Simpler Style */
+    .cloud-container {
+        position: relative;
+        margin: 0 auto;
+        padding: 20px;
+        min-height: auto; /* Remove fixed height */
+        background: var(--bg-primary); /* White background */
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+    }
+
+    /* Remove cloud shape, use simple container */
+    .cloud-wordcloud {
+        position: relative;
+        width: 100%;
+        height: auto; /* Auto height */
+        margin: 0 auto;
+        background-color: transparent; /* No background shape */
+        border-radius: 0;
+        box-shadow: none;
+        text-align: center; /* Center words */
+         padding: 20px 0;
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         align-items: center;
+         gap: 10px 15px;
+    }
+
+    .cloud-word {
+        position: static; /* Remove absolute positioning */
+        transform-origin: center;
+        text-shadow: none; /* Remove shadow */
+        transition: color 0.2s ease;
+        white-space: nowrap;
+        font-weight: 500;
+        letter-spacing: -0.1px;
+        transform: none !important; /* Remove rotation */
+        display: inline-block; /* Make words flow */
+        padding: 2px 5px;
+        border-radius: var(--card-radius);
+    }
+    /* Use different font sizes based on importance */
+     .cloud-word[style*="font-size: 44px"] { font-size: 28px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 40px"] { font-size: 26px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 38px"] { font-size: 24px !important; font-weight: 600; }
+     .cloud-word[style*="font-size: 36px"] { font-size: 22px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 32px"] { font-size: 20px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 30px"] { font-size: 19px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 28px"] { font-size: 18px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 26px"] { font-size: 17px !important; font-weight: 500; }
+     .cloud-word[style*="font-size: 24px"] { font-size: 16px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 22px"] { font-size: 15px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 21px"] { font-size: 15px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 20px"] { font-size: 14px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 19px"] { font-size: 14px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 18px"] { font-size: 13px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 17px"] { font-size: 13px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 16px"] { font-size: 12px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 15px"] { font-size: 12px !important; font-weight: 400; }
+     .cloud-word[style*="font-size: 14px"] { font-size: 12px !important; font-weight: 400; }
+
+    /* Assign Notion-like colors */
+    .cloud-word[style*="color: #007aff"] { color: var(--text-blue); } /* AI & Dev - Blue */
+    .cloud-word[style*="color: #ff9500"] { color: var(--text-yellow); } /* SEO & Growth - Yellow */
+    .cloud-word[style*="color: #5e5ce6"] { color: var(--text-purple); } /* Tools & Plugins - Purple */
+    .cloud-word[style*="color: #34c759"] { color: var(--text-green); } /* Platforms - Green */
+    .cloud-word[style*="color: #ff2d55"] { color: var(--text-red); } /* Website & Product - Red */
+    .cloud-word[style*="color: #ffcc00"] { color: var(--text-yellow); } /* Concepts - Yellow */
+    .cloud-word[style*="color: #5ac8fa"] { color: var(--text-cyan); } /* Environment - Cyan */
+    .cloud-word[style*="color: #af52de"] { color: var(--text-purple); } /* Plugin - Purple */
+
+
+    .cloud-word:hover {
+        transform: none !important;
+        background-color: var(--bg-secondary); /* Subtle background on hover */
+        cursor: default;
+    }
+
+    .cloud-legend {
+        margin-top: 25px; /* Adjusted margin */
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Reduced gap */
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px; /* Smaller gap */
+        font-size: 12px; /* Smaller font */
+        color: var(--text-secondary);
+    }
+
+    .legend-color {
+        width: 12px; /* Smaller circle */
+        height: 12px;
+        border-radius: 3px; /* Square like Notion */
+        border: 1px solid var(--border-color);
+    }
+
+    /* 底部 */
+    footer {
+        text-align: center;
+        padding: 20px 0; /* Reduced padding */
+        margin-top: 30px; /* Reduced margin */
+        background-color: var(--bg-primary);
+        color: var(--text-secondary);
+        font-size: 12px; /* Smaller font */
+        border-radius: 0; /* No radius */
+        box-shadow: none;
+        border-top: 1px solid var(--border-color); /* Add top border */
+        letter-spacing: 0px;
+    }
+
+    footer p {
+        margin: 4px 0;
+    }
+
+    .disclaimer {
+        margin-top: 10px;
+        font-style: normal; /* Remove italic */
+    } 
+    </style>
+</head>
+<body>
+    <!-- Sidebar Placeholder (dynamically filled by script.js) -->
+    <div id="sidebar-placeholder"></div>
+
+    <header>
+        <h1>Daily Report 🔥</h1>
+        <!-- !!! UPDATE: Date in header !!! -->
+        <p class="date">April 17, 2025</p>
+        <div class="meta-info">
+            <!-- !!! UPDATE: Message and user counts !!! -->
+            <span>约 80+ 条消息</span>
+            <span>约 20+ 位活跃用户</span> <!-- Adjusted based on 4.17.txt analysis -->
+            <span>群组: 月入万刀预备队🔥</span>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <!-- Navigation items - script.js handles active state based on hash -->
+        <a href="#hot-topics" class="nav-item"><i class="icon">🔥</i> Hot Topics</a>
+        <a href="#tutorials" class="nav-item"><i class="icon">📚</i> Tutorials</a>
+        <a href="#messages" class="nav-item"><i class="icon">💬</i> Messages</a>
+        <a href="#dialogues" class="nav-item"><i class="icon">👥</i> Dialogues</a>
+        <a href="#qa" class="nav-item"><i class="icon">❓</i> Q&A</a>
+        <a href="#analytics" class="nav-item"><i class="icon">📊</i> Analytics</a>
+        <a href="#word-cloud" class="nav-item"><i class="icon">☁️</i> Word Cloud</a>
+    </nav>
+
+    <!-- 1. Hot Topics -->
+    <section id="hot-topics" class="hot-topics">
+        <h2>今日热点话题</h2>
+        <div class="topics-container">
+            <!-- !!! FILL HERE: Add topic-card divs with content for April 17th !!! -->
+            <div class="topic-card">
+                <h3>教育邮箱申请与使用</h3>
+                <div class="topic-category">资源与技巧</div>
+                <p class="topic-summary">围绕教育邮箱 (edu) 的申请流程 (ASU 2-3 天审核)、验证过程 (邮件确认、国内手机号验证码) 以及相关优惠展开讨论。重点提及使用 edu 邮箱可获得 Windsurf 学生优惠 (6.9刀/月)。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">edu邮箱</span>
+                    <span class="keyword">ASU</span>
+                    <span class="keyword">申请</span>
+                    <span class="keyword">验证码</span>
+                    <span class="keyword">学生优惠</span>
+                    <span class="keyword">Windsurf</span>
+                    <span class="keyword">激活</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 25+</div> <!-- Adjusted count -->
+            </div>
+            <div class="topic-card">
+                <h3>Cursor 与 ChatGPT/Claude 模型更新及使用</h3>
+                <div class="topic-category">技术与工具</div>
+                <p class="topic-summary">交流了 Cursor 中新模型 o4-mini (非 4o) 的使用体验 (反应速度慢于 3.7)，以及 OpenAI 的 ChatGPT 4o 和 Claude 3o 的新能力 (图像推理)。探讨了 Cursor 的不同模式选择 (Edit/Ask) 及适用场景 (“程序员” vs “产品经理”)。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">Cursor</span>
+                    <span class="keyword">o4-mini</span>
+                    <span class="keyword">ChatGPT 4o</span>
+                    <span class="keyword">Claude 3o</span>
+                    <span class="keyword">模型体验</span>
+                    <span class="keyword">图像推理</span>
+                    <span class="keyword">AI工具</span>
+                    <span class="keyword">模式选择</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 20+</div> <!-- Adjusted count -->
+            </div>
+             <div class="topic-card">
+                <h3>Vercel 部署问题与解决方案</h3>
+                <div class="topic-category">开发与部署</div>
+                <p class="topic-summary">讨论了在 Vercel 上部署项目时遇到的样式文件 (CSS/JS) 不加载/不引用的问题。探讨了可能的原因 (路径问题、配置参数、代码 bug) 和解决方法 (检查路径、查看构建日志、咨询 Cursor AI 获取配置参数、重新部署)。分享了将代码托管到 GitHub (私有仓库亦可) 再连接 Vercel 的部署流程。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">Vercel</span>
+                    <span class="keyword">部署</span>
+                    <span class="keyword">样式不加载</span>
+                    <span class="keyword">CSS</span>
+                    <span class="keyword">GitHub</span>
+                    <span class="keyword">构建日志</span>
+                    <span class="keyword">配置参数</span>
+                    <span class="keyword">Debug</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 15+</div> <!-- Adjusted count -->
+            </div>
+             <div class="topic-card">
+                <h3>建站 UI 设计与资源分享</h3>
+                <div class="topic-category">设计与资源</div>
+                <p class="topic-summary">分享了建站 UI 的实现方法，包括使用免费模板、截图让 AI 模仿，以及利用 Bolt (配合刘小排提示词) 和 Claude (官网白嫖) 生成界面。讨论了直接提供原生代码优于截图模仿。</p>
+                <div class="topic-keywords">
+                    <span class="keyword">UI设计</span>
+                    <span class="keyword">建站</span>
+                    <span class="keyword">Bolt</span>
+                    <span class="keyword">Claude</span>
+                    <span class="keyword">免费模板</span>
+                    <span class="keyword">提示词</span>
+                    <span class="keyword">原生代码</span>
+                </div>
+                <div class="topic-mentions">提及次数：约 10+</div> <!-- Adjusted count -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Tutorials -->
+    <section id="tutorials" class="tutorials">
+        <h2>教程与指南</h2>
+        <div class="tutorials-container">
+            <!-- !!! FILL HERE: Add tutorial-card divs with content for April 17th !!! -->
+             <div class="tutorial-card">
+                <div class="tutorial-type">技巧/流程</div>
+                <h3>ASU .edu 邮箱激活流程</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：烟台-木白</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">简述了申请 ASU .edu 邮箱并通过审核后的激活步骤：1. 收到确认邮件 (提示激活 ID)；2. 点击邮件链接填写信息 (需国内手机号)；3. 接收短信验证码；4. 新邮箱收到最终验证邮件完成激活。</p>
+                 <div class="key-points">
+                    <h4>关键步骤：</h4>
+                    <ul>
+                        <li>查收审核通过邮件 (含激活链接)</li>
+                        <li>填写信息 (留手机号)</li>
+                        <li>短信验证</li>
+                        <li>邮箱验证 (最终确认)</li>
+                    </ul>
+                </div>
+                <div class="tutorial-category">分类：技巧 / 资源 / 学生优惠 / 账户激活</div>
+            </div>
+            <div class="tutorial-card">
+                <div class="tutorial-type">工具/优惠</div>
+                <h3>Windsurf 学生优惠</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：烟台-木白</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">分享了 Windsurf 为学生提供的优惠信息：使用 .edu 邮箱可以 6.9 美元/月的价格订阅。</p>
+                 <div class="tutorial-link">
+                    <a href="https://windsurf.com/editor/students" class="link valid" target="_blank">Windsurf 学生优惠链接</a>
+                </div>
+                <div class="tutorial-category">分类：工具优惠 / 订阅 / edu邮箱</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">资源</div>
+                <h3>哥飞分享：AI 设计工具站文章</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：冯小夏-上海-Lv_7 (提及)</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">提及并推荐了哥飞 (转载) 的关于利用 ChatGPT 4o 进行网站设计的文章 (“如何利用ChatGPT 4o让网站设计大杀四方！”)，认为内容很好，很有启发性。</p>
+                 <div class="tutorial-link">
+                     <!-- Link extracted from message -->
+                    <a href="#" class="link message-link-card"> <!-- Placeholder href, content extracted from message -->
+                        <span class="link-title">如何利用ChatGPT 4o让网站设计大杀四方！</span>
+                        <span class="link-description">看看漂亮的AI工具站是如何做出来的</span>
+                        <span class="link-name">哥飞</span>
+                    </a>
+                 </div>
+                <div class="tutorial-category">分类：AI 工具 / 网站设计 / 资源分享 / ChatGPT 4o</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">技巧/流程</div>
+                <h3>GitHub + Vercel 部署流程</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：广州 超哥 / 冯小夏-上海-Lv_7 / 灰兔</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">确认了将代码 (包括 Clone 的开源项目) 托管到 GitHub (私有仓库也可以)，然后连接 Vercel 进行部署是可行的标准流程。建议操作：Clone -> 修改 -> 上传自己仓库 -> 连接 Vercel。</p>
+                 <div class="key-points">
+                    <h4>流程：</h4>
+                    <ul>
+                        <li>将代码上传至 GitHub 仓库 (公开或私有)</li>
+                        <li>在 Vercel 上创建项目并连接到该 GitHub 仓库</li>
+                        <li>Vercel 自动拉取代码并部署</li>
+                    </ul>
+                </div>
+                <div class="tutorial-category">分类：开发流程 / Vercel / GitHub / 部署 / 私有仓库</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">技巧</div>
+                <h3>Cursor 模式选择理解</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：广州 超哥 / 厦门-糖饼</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">解释了 Cursor 中不同模式的用途：Ask 模式纯粹用于提问，不会修改代码；Edit 模式用于直接编辑代码。可以将其类比为"产品经理"(提需求) 和"程序员"(写代码)。</p>
+                 <div class="tutorial-category">分类：工具使用 / Cursor / AI 编程 / 模式解释</div>
+            </div>
+             <div class="tutorial-card">
+                <div class="tutorial-type">资源</div>
+                <h3>需求挖掘与开发资源汇总 (哥飞/小排)</h3>
+                <div class="tutorial-meta">
+                    <span class="shared-by">分享者：广州 超哥</span>
+                    <span class="share-time">2025-04-17</span>
+                </div>
+                <p class="tutorial-summary">汇总并分享了之前哥飞和小排老师关于海外工具需求挖掘、网站制作、找词 (结合 Stripe)、开发、外链宣传以及产品 MVP、搞钱心法等方面的多篇精华帖和飞书文档链接。</p>
+                 <div class="tutorial-link">
+                    <!-- Extracted links -->
+                    <a href="https://scys.com/articleDetail/xq_topic/[id_card xxx]" class="link invalid" target="_blank">海外工具从需求挖掘到网站制作</a><br>
+                    <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcnadk7rh7gfper83f9d7i5?from=from_copylink" class="link valid" target="_blank">哥飞 - 关于找词</a><br>
+                    <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcndu33kna59cw9sbegzmrq?from=from_copylink" class="link valid" target="_blank">哥飞 - 关于开发</a><br>
+                    <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcne75xjub6ldw5w9b3dkn9?from=from_copylink" class="link valid" target="_blank">哥飞 - 关于外链和宣传</a><br>
+                    <a href="https://scys.com/articleDetail/xq_topic/[id_card xxx]" class="link invalid" target="_blank">小排 - 如何获得产品 idea</a><br>
+                    <a href="https://scys.com/articleDetail/xq_topic/[id_card xxx]" class="link invalid" target="_blank">小排 - 搞钱的心法</a><br>
+                    <a href="https://scys.com/articleDetail/xq_topic/[id_card xxx]" class="link invalid" target="_blank">小排 - 如何快速做出产品 MVP</a><br>
+                    <a href="https://scys.com/articleDetail/xq_topic/[id_card xxx]" class="link invalid" target="_blank">小排 - 什么产品好做？三个一</a>
+                </div>
+                <div class="tutorial-category">分类：资源汇总 / 需求挖掘 / SEO / 开发 / 创业 / 教程</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Messages -->
+    <section id="messages" class="important-messages">
+        <h2>重要消息与提醒</h2>
+        <div class="messages-container">
+            <!-- !!! FILL HERE: Add message-card divs with content for April 17th !!! -->
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">烟台-木白</span>
+                    <span class="message-type">流程说明</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">详细说明了 ASU edu 邮箱审核通过后的激活流程：收到确认邮件 -> 点击链接填信息 (留国内手机号) -> 短信验证码 -> 新邮箱最终验证邮件 -> 完成。</p>
+            </div>
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">冯小夏 / 厦门-糖饼</span>
+                    <span class="message-type">AI进展</span>
+                    <span class="priority priority-high">优先级：高</span>
+                </div>
+                <p class="message-content">关注 AI 最新进展：ChatGPT 4o 功能强悍，Claude 3o 支持图像推理。感叹 AI 工具迭代迅速，3 个月可能就落伍。</p>
+                 <div class="message-full-content">
+                    <p>厦门-糖饼: "4o真强悍 gemini要加油了。期待gemini加速追赶竞对 ... ai工具就是更新换代快 可能3个月后 我们当下高频使用的各种ai又落伍了。"</p>
+                    <p>冯小夏-上海-Lv_7: "昨天更新的3o也很厉害 早上看了卡兹克的推文 能做图像推理了"</p>
+                </div>
+            </div>
+            <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">烟台-木白</span>
+                    <span class="message-type">优惠信息</span>
+                    <span class="priority priority-low">优先级：低</span>
+                </div>
+                <p class="message-content">分享了 Windsurf 学生优惠：使用 edu 邮箱可享受 6.9 美元/月的价格。</p>
+                <div class="message-full-content">
+                    <p>链接: <a href="https://windsurf.com/editor/students" target="_blank">https://windsurf.com/editor/students</a></p>
+                </div>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">曲直</span>
+                    <span class="message-type">方法论</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">提出了 #需求挖掘 的方法：在动手前，先拆解最终产品所需功能 (如用户登录、AI 图片生成)，评估自身技能是否覆盖，若全能打勾再开始做。避免技能不匹配导致项目无法完成。</p>
+                 <div class="message-full-content">
+                    <blockquote>
+                        所以需要对于最终要呈现出来的一个产品的功能，先进行一个拆解。比如它需要用户登录，它能生成 AI 图片等等之类的，把这些功能先列出来，然后如果全都能打勾的话，那就可以开始做。 #需求挖掘 
+                    </blockquote>
+                </div>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">广州 超哥</span>
+                    <span class="message-type">资源汇总</span>
+                    <span class="priority priority-low">优先级：低</span>
+                </div>
+                <p class="message-content">汇总并分享了之前哥飞和刘小排关于需求挖掘、网站制作、找词 (结合 Stripe 入站链接)、开发、外链宣传、产品 idea、搞钱心法、MVP 等方面的精华帖和飞书文档链接 (部分链接含敏感信息已处理)。</p>
+                 <div class="message-full-content">
+                    <p>部分链接：</p>
+                    <ul>
+                        <li>找词: <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcnadk7rh7gfper83f9d7i5?from=from_copylink" target="_blank">飞书文档</a></li>
+                        <li>开发: <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcndu33kna59cw9sbegzmrq?from=from_copylink" target="_blank">飞书文档</a></li>
+                        <li>外链和宣传: <a href="https://shengcaiyoushu01.feishu.cn/minutes/obcne75xjub6ldw5w9b3dkn9?from=from_copylink" target="_blank">飞书文档</a></li>
+                        <li>(更多链接见原文...)</li>
+                    </ul>
+                 </div>
+            </div>
+             <div class="message-card">
+                <div class="message-meta">
+                    <span class="time">2025-04-17</span>
+                    <span class="sender">厦门-糖饼 / 杭州-很神奇</span>
+                    <span class="message-type">技术问题</span>
+                    <span class="priority priority-medium">优先级：中</span>
+                </div>
+                <p class="message-content">讨论 Vercel 部署时样式不加载问题。确认本地正常，检查路径无误后，怀疑是部署配置参数问题。建议将构建日志发给 Cursor AI 协助检查配置。</p>
+                <div class="message-full-content">
+                    <p>厦门-糖饼: "log是说没读取到样式位置，我手动更新了之后重新部署 依然不抓取样式 很迷惑"</p>
+                     <p>杭州-很神奇: "cloudflare 碰到过这个问题...大概是部署的配置参数不太对 ... log 加上，让cursor 检查部署配置参数 cursor 经常找不到配置参数，得引导"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Dialogues -->
+    <section id="dialogues" class="interesting-dialogues">
+        <h2>精彩对话</h2>
+        <div class="dialogues-container">
+            <!-- !!! FILL HERE: Add dialogue-card divs with content for April 17th !!! -->
+            <div class="dialogue-card">
+                <div class="dialogue-type">Vercel 部署排错</div>
+                <div class="dialogue-content">
+                    <!-- Add message divs here -->
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>你们在vercel上部署的时候 有出现样式不引用的问题么。如何解决的。我查过不是路径的问题</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">杭州-长红</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>目前没. vercel我就部署了一个图片站... 也有可能 clone的github 本身代码存在bug</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">广州 超哥</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>你本地可以的吗？就扔上去vercel出不来吗 ... 你直接部署的log吵回去问cursor 我都是这样</p>
+                    </div>
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>是的 vercel上就是不部署样式文件。 构建日志也看过 JS CSS全部不加载 。手动删除重新部署一个样 ... log是说没读取到样式位置，我手动更新了之后重新部署 依然不抓取样式 很迷惑</p>
+                         <blockquote>引用: 杭州-很神奇：是的，log 加上，让cursor 检查部署配置参数</blockquote>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">杭州-很神奇</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>cloudflare 碰到过这个问题... 大概是部署的配置参数不太对 ... log 加上，让cursor 检查部署配置参数 cursor 经常找不到配置参数，得引导</p>
+                        <blockquote>引用: 厦门-糖饼：让我重新部署检查路径，检查过了 都没问题。所以问问大家。这个我那回改了好几天[破涕为笑]</blockquote>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">群友共同探讨 Vercel 部署中 CSS 样式丢失问题。从确认本地环境正常，到检查路径、构建日志，再到怀疑部署配置参数错误 (类比 Cloudflare 经验)，并建议将日志反馈给 Cursor AI 检查配置参数，逐步排查问题。</div>
+                <div class="dialogue-topic">相关话题：Vercel, 部署, CSS, 样式丢失, Debug, 配置参数, Cursor AI, 构建日志</div>
+            </div>
+            <div class="dialogue-card">
+                <div class="dialogue-type">Cursor 模型选择与体验</div>
+                <div class="dialogue-content">
+                    <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">武晓亮</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>cursor里面的吗</p>
+                        <blockquote>引用: 烟台-木白：【图片消息】</blockquote>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">烟台-木白</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>对 ... o4-mini 不是4o</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">广州 超哥</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>试试，今天不少人测评是很猛 ... o4 mini用起来暂时感觉不是很好，反应很慢比起3.7很多，不知道是不是姿势不对</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">李毅</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>为啥我的看不到o4呢？ [抱拳]</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">灰兔</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>先在设置里加上啊</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">鹏翼-北京-Lv1</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>多谢，模式选择你们一般怎么用？ ... 其他两种什么时候用？</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">广州 超哥</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>ask就纯问问题，不会给你改东西 edit是自己改的吧没试过</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">厦门-糖饼</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>一个是产品经理 一个是程序员 你这么理解就是了</p>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">围绕 Cursor 内可用的 AI 模型展开讨论。确认了存在 o4-mini (非 4o)，并初步交流了其与 3.7 相比的性能体验 (反应较慢)。同时，解答了新用户关于如何在设置中启用 O4 模型以及不同模式 (Ask vs Edit) 的使用场景问题 (“产品经理” vs “程序员” 类比)。</div>
+                <div class="dialogue-topic">相关话题：Cursor, AI模型, o4-mini, ChatGPT 4, 设置, 使用体验, 性能, Ask模式, Edit模式</div>
+            </div>
+            <!-- Add more dialogue-card divs as needed -->
+             <div class="dialogue-card">
+                <div class="dialogue-type">UI 实现方式讨论</div>
+                <div class="dialogue-content">
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">鹏翼-北京-Lv1</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>请教下你们建站UI是怎么搞的？自己存了些免费模板，直接可以使用模板代码给cursor吗？还是直接发截图给cursor，好像也能模仿，但是效果肯定不如前者对吧？</p>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">杭州-长红</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>有原生代码，直接用原生代码会更好一点。这是我的理解</p>
+                        <blockquote>引用: 鹏翼-北京-Lv1：请教下你们建站UI是怎么搞的？...</blockquote>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">北京 rns</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>可以用刘小排老师的提示词给bolt，就挺漂亮了</p>
+                         <div class="message-link-card">
+                             <span class="link-title">5分钟做个网站，人人都能学会...</span>
+                             <span class="link-description">来自「生财有术」嘉宾刘小排的主题</span>
+                             <span class="link-name">知识星球</span>
+                         </div>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">灰兔</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>Ui用bolt和claude都挺好看的，我有时候是白嫖claude完成界面，再去cursor完善</p>
+                         <blockquote>引用: 鹏翼-北京-Lv1：请教下你们建站UI是怎么搞的？...</blockquote>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">鹏翼-北京-Lv1</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>哪里白嫖 claude 呀</p>
+                        <blockquote>引用: 灰兔：Ui用bolt和claude都挺好看的...</blockquote>
+                    </div>
+                     <div class="message">
+                        <div class="message-meta">
+                            <span class="speaker">灰兔</span>
+                            <span class="time">2025-04-17</span>
+                        </div>
+                        <p>官网啊，每天有几次的</p>
+                        <blockquote>引用: 鹏翼-北京-Lv1：哪里白嫖 claude 呀</blockquote>
+                    </div>
+                </div>
+                <div class="dialogue-highlight">探讨了多种网站 UI 界面的实现方法。结论是：直接提供原生模板代码给 Cursor 效果最佳；其次可以使用 Bolt (配合优质 Prompt) 或 Claude (官网免费额度) 生成效果不错的初始界面，再用 Cursor 完善；截图模仿效果相对最差。</div>
+                <div class="dialogue-topic">相关话题：UI设计, 建站, Cursor, Bolt, Claude, 免费模板, 提示词, 原生代码, AI生成</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Q&A -->
+    <section id="qa" class="questions-answers">
+        <h2>问答精选</h2>
+        <div class="qa-container">
+            <!-- !!! FILL HERE: Add qa-card divs with content for April 17th !!! -->
+             <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">厦门-糖饼</span>
+                        <span class="time">2025-04-17</span>
+                    </div>
+                    <p class="question-content">在 Vercel 上部署时，样式文件 (CSS/JS) 不加载/不引用，路径检查无误，是什么原因？如何解决？</p>
+                    <div class="question-tags">
+                        <span class="tag">Vercel</span>
+                        <span class="tag">部署</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">样式丢失</span>
+                        <span class="tag">Debug</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">杭州-长红 / 广州 超哥 / 杭州-很神奇</span>
+                            <span class="time">2025-04-17</span>
+                            <span class="accepted-badge">综合建议</span>
+                        </div>
+                        <p>1. <strong>确认本地环境：</strong> 确保项目在本地运行时样式是正常的。
+                           <br>2. <strong>检查代码 Bug：</strong> 排除 Clone 下来的代码本身存在 Bug 的可能性。
+                           <br>3. <strong>检查 Vercel 构建日志：</strong> 仔细查看 Vercel 的构建日志，确认是否有关于 CSS/JS 文件加载失败或路径错误的明确提示 (提问者已确认日志提示未读取到样式位置)。
+                           <br>4. <strong>怀疑配置参数：</strong> 基于 Cloudflare 类似问题的经验，推测可能是 Vercel 的部署配置参数不正确。
+                           <br>5. <strong>咨询 AI：</strong> 建议将详细的构建日志提供给 Cursor AI，明确要求其【检查部署配置参数】，可能需要引导 AI 找到正确的配置项。
+                           <br>6. <strong>尝试重新部署：</strong> 在修改路径或配置后，尝试删除项目并【重新部署】(提问者尝试更新后重新部署仍无效)。
+                           <br>7. <strong>最终建议：</strong> 重点检查 Vercel 平台的部署配置或框架特定的构建配置。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">李毅 / 鹏翼-北京-Lv1</span>
+                        <span class="time">2025-04-17</span>
+                    </div>
+                    <p class="question-content">Cursor 里的 o4 模型如何启用？模式选择 (Ask/Edit) 有何区别？</p>
+                    <div class="question-tags">
+                        <span class="tag">Cursor</span>
+                        <span class="tag">o4-mini</span>
+                        <span class="tag">设置</span>
+                        <span class="tag">模式选择</span>
+                        <span class="tag">AI模型</span>
+                    </div>
+                </div>
+                <div class="answers">
+                     <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">灰兔 / 广州 超哥 / 厦门-糖饼</span>
+                            <span class="time">2025-04-17</span>
+                            <span class="accepted-badge">经验分享</span>
+                        </div>
+                        <p>1. <strong>启用 O4：</strong> 需要先在 Cursor 的【设置 (Settings)】中手动添加 O4 系列模型 (如 o4-mini)。
+                           <br>2. <strong>模式区别：</strong> 
+                           <br>   - <strong>Ask 模式：</strong> 纯粹用于提问和获取信息，AI 不会直接修改你的代码。适合咨询、解释代码、生成思路等。
+                           <br>   - <strong>Edit 模式：</strong> 用于让 AI 直接对你的代码进行修改或编写。适合重构、添加功能、修复 Bug 等。
+                           <br>   - <strong>类比理解：</strong> Ask 模式 ≈ "产品经理"(提需求/问问题)，Edit 模式 ≈ "程序员"(动手写/改代码)。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">杭州-长红</span>
+                        <span class="time">2025-04-17</span>
+                    </div>
+                    <p class="question-content">自己找到的模板代码或 Clone 的开源代码，上传到 GitHub 的私有 (Private) 仓库后，还能连接到 Vercel 进行部署吗？</p>
+                    <div class="question-tags">
+                        <span class="tag">Vercel</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">私有仓库</span>
+                        <span class="tag">部署</span>
+                        <span class="tag">开源代码</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">冯小夏-上海-Lv_7 / 广州 超哥 / 灰兔</span>
+                            <span class="time">2025-04-17</span>
+                            <span class="accepted-badge">确认可行</span>
+                        </div>
+                        <p><strong>完全可以。</strong> Vercel 支持连接 GitHub 的私有仓库进行部署。流程：
+                           <br>1. 将代码 (无论是自己写的、模板改的还是 Clone 的) 上传到【自己的】 GitHub 仓库 (新建项目，选择 Private)。
+                           <br>2. 在 Vercel 中创建新项目。
+                           <br>3. 选择 Import Git Repository，连接到你的 GitHub 账户。
+                           <br>4. 授权 Vercel 访问你的仓库 (可以选择所有仓库或仅特定仓库)。
+                           <br>5. 选择你的私有仓库，进行部署配置即可。
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="qa-card">
+                <div class="question">
+                    <div class="question-meta">
+                        <span class="asker">鹏翼-北京-Lv1</span>
+                        <span class="time">2025-04-17</span>
+                    </div>
+                    <p class="question-content">建站时的 UI 是怎么搞定的？可以直接给 Cursor 模板代码或截图让它模仿吗？哪种效果好？</p>
+                    <div class="question-tags">
+                        <span class="tag">建站</span>
+                        <span class="tag">UI设计</span>
+                        <span class="tag">Cursor</span>
+                        <span class="tag">模板</span>
+                        <span class="tag">Bolt</span>
+                        <span class="tag">Claude</span>
+                    </div>
+                </div>
+                <div class="answers">
+                    <div class="answer">
+                        <div class="answer-meta">
+                            <span class="responder">杭州-长红 / 北京 rns / 灰兔</span>
+                            <span class="time">2025-04-17</span>
+                            <span class="accepted-badge">多种方法 & 效果对比</span>
+                        </div>
+                        <p>1. <strong>方法汇总：</strong>
+                           <br>   - **提供原生代码/模板：** 直接将 HTML/CSS 代码给 Cursor。
+                           <br>   - **使用 AI 生成工具：** 利用 Bolt (如 <a href="https://bolt.new/" target="_blank">bolt.new</a>，配合刘小排的 Prompt)，或 Claude (官网免费额度，支持 Artifacts 生成界面)。
+                           <br>   - **截图模仿：** 将界面截图发给 Cursor 让其模仿。
+                           <br>   - **组合使用：** 先用 Bolt/Claude 生成基础 UI，再到 Cursor 中进行细节完善和功能开发。
+                           <br>2. <strong>效果对比：</strong>
+                           <br>   - **最好：** 提供原生代码/模板，AI 理解最准确。
+                           <br>   - **次好：** 使用 Bolt 或 Claude 生成，效果通常不错，特别是 Bolt 配合好 Prompt。
+                           <br>   - **一般：** 截图模仿，AI 可能无法完美复现所有细节和布局。
+                           <br>3. <strong>建议：</strong> 有代码优先给代码；无代码可尝试 Bolt/Claude 生成初始界面再完善。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Analytics -->
+    <section id="analytics" class="analytics">
+        <h2>数据分析</h2>
+        <!-- !!! UPDATE: All analytics data based on April 17th records !!! -->
+        <h3>话题热度图</h3>
+        <div class="heatmap-container">
+            <!-- Add heat-item divs with updated data -->
+             <div class="heat-item">
+                <div class="heat-topic">教育邮箱申请与使用 (含优惠)</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">27%</div>
+                    <div class="heat-count">约 25+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 27%; background: var(--accent-blue);"></div>
+                </div>
+            </div>
+            <div class="heat-item">
+                <div class="heat-topic">Cursor 与 ChatGPT/Claude 模型更新及使用</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">22%</div>
+                    <div class="heat-count">约 20+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 22%; background: #F9A825;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">Vercel 部署问题与解决方案</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">17%</div>
+                    <div class="heat-count">约 15+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 17%; background: #6c58a9;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">建站 UI 设计与资源</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">12%</div>
+                    <div class="heat-count">约 10+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 12%; background: #c43b38;"></div>
+                </div>
+            </div>
+             <div class="heat-item">
+                <div class="heat-topic">其他 (需求挖掘, 资源汇总, Supabase, 闲聊等)</div>
+                <div class="heat-details">
+                    <div class="heat-percentage">22%</div>
+                    <div class="heat-count">约 20+ 条消息</div>
+                </div>
+                <div class="heat-bar">
+                    <div class="heat-fill" style="width: 22%; background: #2d734c;"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3>发言排行榜</h3>
+        <div class="participants-container">
+            <!-- Add participant-item divs with updated data (based on 4.17.txt) -->
+            <div class="participant-item">
+                <div class="participant-rank">1</div>
+                <div class="participant-info">
+                    <div class="participant-name">冯小夏-上海-Lv_7</div>
+                    <div class="participant-count">约 13 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">信息分享</span>
+                        <span class="characteristic">AI关注</span>
+                        <span class="characteristic">经验确认</span>
+                        <span class="characteristic">edu邮箱讨论</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">edu邮箱</span>
+                        <span class="word">4o</span>
+                        <span class="word">3o</span>
+                        <span class="word">Vercel</span>
+                        <span class="word">GitHub</span>
+                        <span class="word">哥飞</span>
+                        <span class="word">工作日</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">2</div>
+                <div class="participant-info">
+                    <div class="participant-name">厦门-糖饼</div>
+                    <div class="participant-count">约 11 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">问题提出</span>
+                        <span class="characteristic">Vercel排错</span>
+                        <span class="characteristic">AI评论</span>
+                        <span class="characteristic">模式解释</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Vercel</span>
+                        <span class="word">样式</span>
+                        <span class="word">部署</span>
+                        <span class="word">4o</span>
+                        <span class="word">Cursor</span>
+                        <span class="word">模式</span>
+                        <span class="word">魔法插件</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">3</div>
+                <div class="participant-info">
+                    <div class="participant-name">广州 超哥</div>
+                    <div class="participant-count">约 10 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">经验分享</span>
+                        <span class="characteristic">资源汇总</span>
+                        <span class="characteristic">Cursor体验反馈</span>
+                        <span class="characteristic">助人解答</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Vercel</span>
+                        <span class="word">Cursor</span>
+                        <span class="word">log</span>
+                        <span class="word">o4-mini</span>
+                        <span class="word">GitHub</span>
+                        <span class="word">哥飞</span>
+                        <span class="word">Supabase</span>
+                    </div>
+                </div>
+            </div>
+            <div class="participant-item">
+                <div class="participant-rank">4</div>
+                <div class="participant-info">
+                    <div class="participant-name">烟台-木白</div>
+                    <div class="participant-count">约 8 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">流程说明 (edu邮箱)</span>
+                        <span class="characteristic">优惠分享 (Windsurf)</span>
+                        <span class="characteristic">模型区分</span>
+                        <span class="characteristic">信息提供</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">edu邮箱</span>
+                        <span class="word">激活</span>
+                        <span class="word">验证码</span>
+                        <span class="word">Windsurf</span>
+                        <span class="word">o4-mini</span>
+                        <span class="word">手机号</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">5</div>
+                <div class="participant-info">
+                    <div class="participant-name">鹏翼-北京-Lv1</div>
+                    <div class="participant-count">约 7 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">提问者</span>
+                        <span class="characteristic">学习探索 (Cursor/UI)</span>
+                        <span class="characteristic">流程确认</span>
+                        <span class="characteristic">信息需求</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Cursor</span>
+                        <span class="word">O4</span>
+                        <span class="word">模式</span>
+                        <span class="word">UI</span>
+                        <span class="word">模板</span>
+                        <span class="word">技术栈</span>
+                        <span class="word">edu邮箱</span>
+                    </div>
+                </div>
+            </div>
+             <div class="participant-item">
+                <div class="participant-rank">6</div>
+                <div class="participant-info">
+                    <div class="participant-name">杭州-长红</div>
+                    <div class="participant-count">约 7 条消息</div>
+                    <div class="participant-characteristics">
+                        <span class="characteristic">Vercel讨论</span>
+                        <span class="characteristic">部署流程确认</span>
+                        <span class="characteristic">UI方法探讨</span>
+                        <span class="characteristic">资源关注</span>
+                    </div>
+                    <div class="participant-words">
+                        <span class="word">Vercel</span>
+                        <span class="word">部署</span>
+                        <span class="word">GitHub</span>
+                        <span class="word">UI</span>
+                        <span class="word">模板</span>
+                        <span class="word">哥飞</span>
+                        <span class="word">private</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more participants if needed -->
+        </div>
+
+        <h3>熬夜冠军</h3>
+        <div class="night-owls-container">
+            <!-- Update night-owl-item div with updated data -->
+            <div class="night-owl-item">
+                <div class="owl-crown" title="凌晨活跃">🦉</div>
+                <div class="owl-info">
+                    <div class="owl-name">冯小夏-上海-Lv_7</div>
+                    <div class="owl-title">凌晨等邮件人</div>
+                    <div class="owl-time">最晚活跃时间：凌晨 3:15 左右</div>
+                    <div class="owl-messages">关键深夜消息：等待并最终收到 ASU edu 邮箱的第二封确认邮件</div>
+                    <div class="owl-last-message">我的第二封一直没来，我看了好几次 凌晨3点15终于收到了第二封 哈哈哈哈 刚看了下</div>
+                    <div class="owl-note">注：根据聊天记录中明确提到的凌晨时间点判定。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Word Cloud -->
+    <section id="word-cloud" class="word-cloud">
+        <h2>词云图</h2>
+         <!-- !!! UPDATE: Word cloud words, sizes, and colors based on April 17th data !!! -->
+        <div class="cloud-container">
+            <div class="cloud-wordcloud" id="word-cloud-content">
+                <!-- Add span elements for words, sizes adjusted -->
+                <span class="cloud-word" style="font-size: 28px; color: var(--text-cyan); font-weight: 600;">edu邮箱</span>
+                <span class="cloud-word" style="font-size: 26px; color: var(--text-purple); font-weight: 600;">Cursor</span>
+                <span class="cloud-word" style="font-size: 24px; color: var(--text-green); font-weight: 600;">Vercel</span>
+                <span class="cloud-word" style="font-size: 22px; color: var(--text-blue); font-weight: 500;">AI</span>
+                <span class="cloud-word" style="font-size: 20px; color: var(--text-red); font-weight: 500;">部署</span>
+                <span class="cloud-word" style="font-size: 19px; color: var(--text-blue); font-weight: 500;">ChatGPT</span>
+                <span class="cloud-word" style="font-size: 18px; color: var(--text-red); font-weight: 500;">样式</span>
+                <span class="cloud-word" style="font-size: 17px; color: var(--text-purple); font-weight: 500;">o4-mini</span>
+                <span class="cloud-word" style="font-size: 16px; color: var(--text-red); font-weight: 400;">问题</span>
+                <span class="cloud-word" style="font-size: 15px; color: var(--text-cyan); font-weight: 400;">激活</span>
+                <span class="cloud-word" style="font-size: 15px; color: var(--text-red); font-weight: 400;">UI</span>
+                <span class="cloud-word" style="font-size: 14px; color: var(--text-green); font-weight: 400;">GitHub</span>
+                <span class="cloud-word" style="font-size: 14px; color: var(--text-yellow); font-weight: 400;">需求</span>
+                <span class="cloud-word" style="font-size: 13px; color: var(--text-purple); font-weight: 400;">Bolt</span>
+                <span class="cloud-word" style="font-size: 13px; color: var(--text-yellow); font-weight: 400;">优惠</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-red); font-weight: 400;">模板</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-purple); font-weight: 400;">Claude</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-green); font-weight: 400;">分享</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-cyan); font-weight: 400;">验证码</span>
+                <span class="cloud-word" style="font-size: 12px; color: var(--text-blue); font-weight: 400;">模型</span>
+            </div>
+            <div class="cloud-legend">
+                <!-- Legend remains the same unless categories change -->
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-blue);"></span>
+                    <span class="legend-label">AI 与开发</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-yellow);"></span>
+                    <span class="legend-label">SEO 与增长</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-purple);"></span>
+                    <span class="legend-label">工具与插件</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-green);"></span>
+                    <span class="legend-label">平台/资源</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-red);"></span>
+                    <span class="legend-label">网站与问题</span>
+                </div>
+                 <div class="legend-item">
+                    <span class="legend-color" style="background-color: var(--block-cyan);"></span>
+                    <span class="legend-label">账户/概念</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 页面底部 -->
+    <footer>
+        <p>数据来源：月入万刀预备队🔥 聊天记录</p>
+        <!-- !!! UPDATE: Generation time and period !!! -->
+        <p>生成时间：<span class="generation-time">2025-04-18 10:00:00</span></p> <!-- Placeholder time -->
+        <p>统计周期：2025-04-17</p>
+        <p class="disclaimer">免责声明：本报告由 AI 基于公开群聊讨论自动生成，可能存在错误或遗漏。如发现不当内容或侵权问题，请联系管理员处理。</p>
+    </footer>
+
+    <!-- Link to external JS file (using defer is recommended) -->
+    <!-- Replace script src with inline script -->
+    <!-- <script src="script.js" defer></script> --> <!-- Keeping this line commented out -->
+    <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to load and insert the sidebar
+        function loadSidebar() {
+            fetch('sidebar.html') // Fetch the sidebar component
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    const placeholder = document.getElementById('sidebar-placeholder');
+                    if (placeholder) {
+                        placeholder.innerHTML = html; // Insert the HTML
+                        initializeSidebarLogic(); // Initialize its JS AFTER insertion
+                        updateCurrentArchiveLink(); // Highlight current page link
+                    } else {
+                        console.error('Sidebar placeholder not found!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching or inserting sidebar:', error);
+                    // Optionally, provide fallback behavior or hide sidebar toggle if load fails
+                    const toggleContainer = document.querySelector('.sidebar-toggle-container');
+                    if (toggleContainer) toggleContainer.style.display = 'none';
+                });
+        }
+
+        // Function to set up sidebar event listeners
+        function initializeSidebarLogic() {
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggleContainer = document.querySelector('.sidebar-toggle-container');
+            let sidebarTimeout;
+
+            if (sidebarToggleContainer && sidebar) {
+                // Event listener for hovering over the toggle area (icon + text)
+                sidebarToggleContainer.addEventListener('mouseover', function() {
+                    clearTimeout(sidebarTimeout);
+                    sidebar.classList.add('active');
+                });
+
+                // Event listener for mouse leaving the toggle area
+                sidebarToggleContainer.addEventListener('mouseout', function() {
+                    sidebarTimeout = setTimeout(() => {
+                        if (!sidebar.matches(':hover')) { // Check if mouse is NOT over the sidebar itself
+                            sidebar.classList.remove('active');
+                        }
+                    }, 300); // Delay before hiding
+                });
+
+                // Event listener for hovering over the sidebar itself
+                sidebar.addEventListener('mouseover', function() {
+                    clearTimeout(sidebarTimeout); // Cancel any pending hide timeout
+                });
+
+                // Event listener for mouse leaving the sidebar
+                sidebar.addEventListener('mouseout', function(e) {
+                    // Check if the mouse moved to the toggle container; if so, don't hide
+                     if (!sidebarToggleContainer.contains(e.relatedTarget)) {
+                         sidebarTimeout = setTimeout(() => {
+                              if (!sidebarToggleContainer.matches(':hover')) { // Also check toggle isn't hovered
+                                  sidebar.classList.remove('active');
+                              }
+                         }, 300);
+                     }
+                });
+
+                // Sidebar hierarchy toggle logic
+                const toggleItems = document.querySelectorAll('.sidebar .toggle-item');
+                toggleItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        // Prevent click from bubbling up if it's just the arrow
+                        //if (e.target === this.querySelector('::before')) return; // Pseudo-elements aren't real targets
+
+                        const sublist = this.nextElementSibling;
+                        if (sublist && sublist.tagName === 'UL') {
+                            // Toggle logic for expanding/collapsing
+                            const isExpanded = sublist.classList.toggle('expanded');
+                            this.classList.toggle('expanded', isExpanded);
+
+                            // // Optional: Collapse other items at the same level (Accordion effect)
+                            // if (isExpanded) {
+                            //     const parentList = this.closest('ul');
+                            //     parentList.querySelectorAll('.toggle-item.expanded').forEach(otherItem => {
+                            //         if (otherItem !== this) {
+                            //             otherItem.classList.remove('expanded');
+                            //             const otherSublist = otherItem.nextElementSibling;
+                            //             if (otherSublist && otherSublist.tagName === 'UL') {
+                            //                 otherSublist.classList.remove('expanded');
+                            //             }
+                            //         }
+                            //     });
+                            // }
+                        }
+                    });
+                });
+            } else {
+                console.error("Sidebar elements (.sidebar or .sidebar-toggle-container) not found after injection.");
+            }
+        }
+
+        // Function to highlight the current page link in the sidebar
+        function updateCurrentArchiveLink() {
+            // Use a more robust way to get the current filename, handling potential trailing slashes etc.
+            const pathParts = window.location.pathname.split('/');
+            const currentPagePath = pathParts.pop() || pathParts.pop(); // Handles trailing slash
+
+            if (!currentPagePath) return; // Exit if no filename found
+
+            const sidebarLinks = document.querySelectorAll('.sidebar .day-list a');
+
+            sidebarLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (linkPath === currentPagePath) {
+                    link.classList.add('current-archive-link');
+
+                    // Expand parents: Day List -> Month Toggle -> Month List -> Year Toggle
+                    let currentElement = link;
+                    while(currentElement && currentElement !== document.body) {
+                        // Find closest UL parent and its preceding toggle item
+                        const parentList = currentElement.closest('ul');
+                        if (parentList) {
+                            parentList.classList.add('expanded'); // Expand the list
+                            const toggleItem = parentList.previousElementSibling;
+                             if (toggleItem && toggleItem.classList.contains('toggle-item')) {
+                                toggleItem.classList.add('expanded'); // Expand the toggle arrow
+                                currentElement = toggleItem; // Move up to check the next level
+                            } else {
+                                break; // Stop if no toggle item found
+                            }
+                        } else {
+                            break; // Stop if no UL found
+                        }
+                    }
+
+                } else {
+                    link.classList.remove('current-archive-link');
+                }
+            });
+        }
+
+        // --- Initialize Tab Navigation --- (Can run independently)
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
+        function activateTab(index) {
+            sections.forEach((section, i) => {
+                section.classList.toggle('active', i === index);
+            });
+            navItems.forEach((nav, i) => {
+                nav.classList.toggle('active', i === index);
+            });
+        }
+
+        if (sections.length > 0 && navItems.length > 0) {
+            let activeIndex = 0; // Default to first tab
+            const hash = window.location.hash.substring(1); // Get hash without '#'
+
+            if (hash) {
+                // Find the index of the section matching the hash
+                const targetSection = document.getElementById(hash);
+                if (targetSection) {
+                     // Find the index based on the order of sections in the DOM
+                    const sectionIndex = Array.from(sections).indexOf(targetSection);
+                    if (sectionIndex !== -1) {
+                        activeIndex = sectionIndex;
+                    }
+                }
+            }
+
+            activateTab(activeIndex); // Activate the determined tab
+
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent default anchor jump
+                    const targetHash = item.getAttribute('href');
+
+                    // Update URL hash without causing page jump if desired
+                    if (history.pushState) {
+                        history.pushState(null, null, targetHash);
+                    } else {
+                        window.location.hash = targetHash; // Fallback for older browsers
+                    }
+
+                    activateTab(index); // Activate the clicked tab
+                });
+            });
+
+             // Optional: Handle back/forward button navigation
+            window.addEventListener('popstate', function() {
+                 let popIndex = 0;
+                 const popHash = window.location.hash.substring(1);
+                 if (popHash) {
+                     const targetSection = document.getElementById(popHash);
+                     if (targetSection) {
+                         const sectionIndex = Array.from(sections).indexOf(targetSection);
+                         if (sectionIndex !== -1) {
+                             popIndex = sectionIndex;
+                         }
+                     }
+                 }
+                 activateTab(popIndex);
+            });
+
+        }
+
+        // --- Load Sidebar --- (Starts fetching)
+        loadSidebar();
+    }); 
+    </script>
+</body>
+</html> 
