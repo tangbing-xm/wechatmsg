@@ -1075,8 +1075,19 @@
 </style>
 </head>
 <body>
-    <!-- Sidebar Placeholder (dynamically filled by script.js) -->
-    <div id="sidebar-placeholder"></div>
+      <script>
+    // 在页面加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 修改fetch路径，使用绝对路径从根目录加载sidebar
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (url === 'sidebar.html') {
+                return originalFetch('/sidebar.html', options);
+            }
+            return originalFetch(url, options);
+        };
+    });
+    </script>
 
 <header>
     <h1>Daily Report 🔥</h1>
