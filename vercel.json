@@ -4,6 +4,7 @@
     { "src": "**/*.{html,css,js,png,jpg,svg}", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/chat-history/2025/4/chat-history/2025/4/(.*)", "dest": "/chat-history/2025/4/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
