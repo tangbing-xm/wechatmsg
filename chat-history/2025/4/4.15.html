@@ -1022,6 +1022,22 @@
     <!-- Sidebar Placeholder -->
     <div id="sidebar-placeholder"></div>
 
+    <!-- !!! ADD THIS SCRIPT !!! -->
+    <script>
+    // 在页面加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+        // 修改fetch路径，使用绝对路径从根目录加载sidebar
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (url === 'sidebar.html') {
+                return originalFetch('/sidebar.html', options);
+            }
+            return originalFetch(url, options);
+        };
+    });
+    </script>
+    <!-- !!! END OF ADDED SCRIPT !!! -->
+
     <header>
         <h1>Daily Report 🔥</h1>
         <p class="date">April 15, 2025</p>
