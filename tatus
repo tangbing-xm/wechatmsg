@@ -1,0 +1,22 @@
+[1mdiff --git a/4.22.html b/4.22.html[m
+[1mindex 025e8c3..e675d74 100644[m
+[1m--- a/4.22.html[m
+[1m+++ b/4.22.html[m
+[36m@@ -6,7 +6,7 @@[m
+     <title>Daily Report 🔥 - 2025年4月22日</title>[m
+     <!-- Link to external CSS file -->[m
+     <!-- Replace link with inline style -->[m
+[31m-   <link rel="stylesheet" href="/style.css">[m
+[32m+[m[32m   <link rel="stylesheet" href="style.css">[m
+ </head>[m
+ <body>[m
+     <!-- Sidebar Placeholder (dynamically filled by script.js) -->[m
+[36m@@ -703,7 +703,7 @@[m
+ [m
+     <!-- Link to external JS file (using defer is recommended) -->[m
+     <!-- Replace script src with inline script -->[m
+[31m-   <script src="/script.js"></script>[m
+[32m+[m[32m   <script src="script.js"></script>[m
+  [m
+ </body>[m
+ </html>[m
