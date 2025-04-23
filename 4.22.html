@@ -1702,8 +1702,7 @@
         </div>
     </section>
 
-    <!-- 8. 页面底部 -->
-    <footer>
+   <footer>
         <p>数据来源：月入万刀预备队🔥 聊天记录</p>
         <!-- !!! UPDATE: Generation time and period !!! -->
         <p>生成时间：<span class="generation-time">2025-04-23 10:30:00</span></p> <!-- Placeholder time -->
@@ -1713,7 +1712,7 @@
 
     <!-- Link to external JS file (using defer is recommended) -->
     <!-- Replace script src with inline script -->
-    <script src="script.js" defer></script> <!-- Keeping this line as placeholder, will be replaced -->
+    <!-- <script src="script.js" defer></script> --> <!-- Placeholder commented out -->
     <script defer>
     document.addEventListener('DOMContentLoaded', function() {
         // Function to load and insert the sidebar
@@ -1721,19 +1720,18 @@
             fetch('sidebar.html') // Fetch the sidebar component
                 .then(response => {
                     if (!response.ok) {
-                        // Don't throw an error if sidebar.html is not found, just log it.
                         console.warn('Sidebar component (sidebar.html) not found or failed to load. Sidebar will not be displayed.');
-                        return null; // Indicate failure gracefully
+                        return null;
                     }
                     return response.text();
                 })
                 .then(html => {
-                    if (html) { // Only proceed if sidebar HTML was loaded
+                    if (html) {
                         const placeholder = document.getElementById('sidebar-placeholder');
                         if (placeholder) {
-                            placeholder.innerHTML = html; // Insert the HTML
-                            initializeSidebarLogic(); // Initialize its JS AFTER insertion
-                            updateCurrentArchiveLink(); // Highlight current page link
+                            placeholder.innerHTML = html;
+                            initializeSidebarLogic();
+                            updateCurrentArchiveLink();
                         } else {
                             console.error('Sidebar placeholder not found!');
                         }
@@ -1751,38 +1749,12 @@
             const sidebarToggleContainer = document.querySelector('.sidebar-toggle-container');
             let sidebarTimeout;
 
-            // Ensure sidebar and toggle container exist before adding listeners
             if (sidebarToggleContainer && sidebar) {
-                // Event listener for hovering over the toggle area (icon + text)
-                sidebarToggleContainer.addEventListener('mouseover', function() {
-                    clearTimeout(sidebarTimeout);
-                    sidebar.classList.add('active');
-                });
+                sidebarToggleContainer.addEventListener('mouseover', function() { clearTimeout(sidebarTimeout); sidebar.classList.add('active'); });
+                sidebarToggleContainer.addEventListener('mouseout', function() { sidebarTimeout = setTimeout(() => { if (!sidebar.matches(':hover')) { sidebar.classList.remove('active'); } }, 300); });
+                sidebar.addEventListener('mouseover', function() { clearTimeout(sidebarTimeout); });
+                sidebar.addEventListener('mouseout', function() { sidebarTimeout = setTimeout(() => { if (!sidebarToggleContainer.matches(':hover')) { sidebar.classList.remove('active'); } }, 300); });
 
-                // Event listener for mouse leaving the toggle area
-                sidebarToggleContainer.addEventListener('mouseout', function() {
-                    sidebarTimeout = setTimeout(() => {
-                        if (!sidebar.matches(':hover')) {
-                            sidebar.classList.remove('active');
-                        }
-                    }, 300);
-                });
-
-                // Event listener for hovering over the sidebar itself
-                sidebar.addEventListener('mouseover', function() {
-                    clearTimeout(sidebarTimeout);
-                });
-
-                // Event listener for mouse leaving the sidebar
-                sidebar.addEventListener('mouseout', function() {
-                    sidebarTimeout = setTimeout(() => {
-                        if (!sidebarToggleContainer.matches(':hover')) {
-                            sidebar.classList.remove('active');
-                        }
-                    }, 300);
-                });
-
-                // Sidebar hierarchy toggle logic
                 const toggleItems = document.querySelectorAll('.sidebar .toggle-item');
                 toggleItems.forEach(item => {
                     item.addEventListener('click', function() {
@@ -1794,7 +1766,6 @@
                     });
                 });
             } else {
-                // Don't log error if sidebar elements aren't found, as sidebar might be optional
                  if (!sidebar) console.warn("Sidebar element (.sidebar) not found after potential injection.");
                  if (!sidebarToggleContainer) console.warn("Sidebar toggle element (.sidebar-toggle-container) not found after potential injection.");
             }
@@ -1803,80 +1774,78 @@
         // Function to highlight the current page link in the sidebar
         function updateCurrentArchiveLink() {
              const sidebarExists = document.querySelector('.sidebar');
-             if (!sidebarExists) return; // Don't run if sidebar isn't there
+             if (!sidebarExists) return;
 
-            const currentPagePath = window.location.pathname.split('/').pop(); // Get current filename (e.g., '4.15.html')
+            const currentPagePath = window.location.pathname.split('/').pop();
             const sidebarLinks = document.querySelectorAll('.sidebar .day-list a');
-             if (sidebarLinks.length === 0) return; // Exit if no links found
+             if (sidebarLinks.length === 0) return;
 
             sidebarLinks.forEach(link => {
                 const linkPath = link.getAttribute('href');
                 if (linkPath === currentPagePath) {
                     link.classList.add('current-archive-link');
-                    // Optionally expand parent month/year if needed
                     const dayList = link.closest('.day-list');
                     const monthToggle = dayList?.previousElementSibling;
                     const monthList = monthToggle?.closest('.month-list');
                     const yearToggle = monthList?.previousElementSibling;
 
-                    // Expand parents only if they exist
                     dayList?.classList.add('expanded');
-                     if (monthToggle && monthToggle.classList.contains('toggle-item')) {
-                         monthToggle.classList.add('expanded');
-                     }
+                     if (monthToggle && monthToggle.classList.contains('toggle-item')) { monthToggle.classList.add('expanded'); }
                      monthList?.classList.add('expanded');
-                     if (yearToggle && yearToggle.classList.contains('toggle-item')) {
-                        yearToggle.classList.add('expanded');
-                     }
-
+                     if (yearToggle && yearToggle.classList.contains('toggle-item')) { yearToggle.classList.add('expanded'); }
                 } else {
                     link.classList.remove('current-archive-link');
                 }
             });
         }
 
-        // --- Initialize Tab Navigation --- (Can run independently)
+        // --- Initialize Tab Navigation ---
         const navItems = document.querySelectorAll('.nav-item');
         const sections = document.querySelectorAll('section');
 
-        if (sections.length > 0 && navItems.length > 0) {
-            const hash = window.location.hash;
-            let activeIndex = 0; // Default to the first tab
+        function setActiveTab(hash) {
+            let activeIndex = 0; // Default to first tab
             if (hash) {
                 navItems.forEach((item, index) => {
-                    // Check if the item's href matches the hash directly or after the '#'
                     const itemHash = item.getAttribute('href');
                     if (itemHash === hash || '#' + itemHash.split('#').pop() === hash) {
-                       activeIndex = index;
+                        activeIndex = index;
                     }
                 });
             }
-            // Activate the determined tab/section
+
+            // Update active states based on index
             sections.forEach((section, index) => {
-                if (index === activeIndex) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
+                section.classList.toggle('active', index === activeIndex);
             });
             navItems.forEach((nav, index) => {
-                 if (index === activeIndex) {
-                    nav.classList.add('active');
-                } else {
-                    nav.classList.remove('active');
-                }
+                nav.classList.toggle('active', index === activeIndex);
             });
 
+            // If target section doesn't exist, warn and default to first
+            if (activeIndex >= sections.length && sections.length > 0) {
+                 console.warn(`Section for hash ${hash} not found, defaulting to first section.`);
+                 sections[0].classList.add('active');
+                 if (navItems.length > 0) navItems[0].classList.add('active');
+            }
+        }
+
+        // Initial setup based on current hash or default
+        if (sections.length > 0 && navItems.length > 0) {
+             setActiveTab(window.location.hash);
         } else if (sections.length > 0) {
-             // If no nav items, but sections exist, show the first section by default
+             // If no nav items, show first section
              sections[0].classList.add('active');
         }
 
-
+        // --- CLICK EVENT LISTENER FOR NAV ITEMS ---
         navItems.forEach((item, index) => {
             item.addEventListener('click', function(e) {
-                // Allow default behavior (hash change) for actual navigation
-                // e.preventDefault(); // Remove this line
+                // --- Prevent the default anchor link scroll behavior ---
+                e.preventDefault();
+                // --- End of change ---
+
+                const targetHash = item.getAttribute('href');
 
                 // Update active states immediately for visual feedback
                 navItems.forEach(nav => nav.classList.remove('active'));
@@ -1884,46 +1853,25 @@
                 item.classList.add('active');
                 if (sections[index]) {
                    sections[index].classList.add('active');
+                   // Optionally update hash without triggering scroll (for bookmarking/history)
+                   // history.pushState(null, null, targetHash); // Uncomment if you want URL hash to update
                 } else {
-                    // If the target section doesn't exist (e.g., index out of bounds)
-                    // fall back to showing the first section or handle as error
                     console.warn(`Section with index ${index} not found for nav item ${item.textContent}`);
                     if(sections.length > 0) sections[0].classList.add('active');
-                    if(navItems.length > 0) navItems[0].classList.add('active'); // Reset active nav to first if target fails
+                    if(navItems.length > 0) navItems[0].classList.add('active');
                 }
             });
         });
 
          // Handle hash change events (e.g., back/forward buttons)
          window.addEventListener('hashchange', function() {
-             const hash = window.location.hash;
-             let activeIndex = 0;
-             if (hash) {
-                 navItems.forEach((item, index) => {
-                     const itemHash = item.getAttribute('href');
-                     if (itemHash === hash || '#' + itemHash.split('#').pop() === hash) {
-                         activeIndex = index;
-                     }
-                 });
-             }
-             // Update active states based on the new hash
-             sections.forEach((section, index) => {
-                 if (index === activeIndex) {
-                     section.classList.add('active');
-                 } else {
-                     section.classList.remove('active');
-                 }
-             });
-             navItems.forEach((nav, index) => {
-                 if (index === activeIndex) {
-                     nav.classList.add('active');
-                 } else {
-                     nav.classList.remove('active');
-                 }
-             });
+             // When the hash changes (e.g., back/forward), update the active tab
+             setActiveTab(window.location.hash);
+             // Note: We don't call preventDefault() here, allowing the browser's
+             // default scroll behavior for back/forward navigation if desired.
          });
 
-        // --- Load Sidebar --- (Starts fetching, handles potential failure)
+        // --- Load Sidebar ---
         loadSidebar();
     });
     </script>
