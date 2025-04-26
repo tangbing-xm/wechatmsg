@@ -153,6 +153,85 @@
     </style>
 </head>
 <body>
+
+     <div id="sidebar-placeholder"></div>
+
+    <script>
+    // Script to fetch sidebar, assuming sidebar.html and sidebar.js are at the root
+    document.addEventListener('DOMContentLoaded', function() {
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            if (url === 'sidebar.html') {
+                // Adjust path based on current file depth
+                const depth = window.location.pathname.split('/').length - 2; // -2 for leading '/' and filename
+                const prefix = '../'.repeat(depth);
+                return originalFetch(prefix + 'sidebar.html', options);
+            }
+            return originalFetch(url, options);
+        };
+
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                const placeholder = document.getElementById('sidebar-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = data;
+                } else {
+                    console.error('Sidebar placeholder not found.');
+                }
+            })
+            .catch(error => console.error('Error loading sidebar:', error));
+
+        // Navigation logic (copied from original for self-containment if needed)
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.4
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === `#${entry.target.id}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        if(window.location.hash) {
+             navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === window.location.hash) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+                navItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+    </script>
     <header>
         <h1>月入万刀预备队🔥</h1>
         <div class="tagline">专注技术交流，分享开发经验</div>
@@ -277,5 +356,6 @@
             <p>专注技术交流，分享开发经验</p>
         </footer>
     </div>
+      <script src="../../../script.js"></script>
 </body>
 </html> 
