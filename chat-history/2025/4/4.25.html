@@ -17,6 +17,8 @@
             max-width: 800px;
             margin: 0 auto;
             background-color: #f7f7f7;
+            position: relative;
+            padding-left: 60px;
         }
         header {
             text-align: left;
@@ -150,6 +152,145 @@
             font-style: italic;
             color: #555;
         }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 260px;
+            background-color: white;
+            border-right: 1px solid #E3E2E0;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-toggle-container {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .sidebar-toggle {
+            position: relative;
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            border: 1px solid #E3E2E0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+            animation: flashing-white-glow 1.8s infinite ease-in-out;
+        }
+
+        .sidebar-toggle-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: #9B9A97;
+            font-size: 11px;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+
+        @keyframes flashing-white-glow {
+            0%, 100% { box-shadow: 0 0 6px 0px rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 0 18px 6px rgba(255, 255, 255, 1); }
+        }
+
+        .sidebar-content {
+            padding: 20px;
+            padding-top: 50px;
+        }
+
+        .sidebar-content h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #37352F;
+            border-bottom: 1px solid #E3E2E0;
+            padding-bottom: 8px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 0;
+        }
+
+        .sidebar ul ul {
+            padding-left: 15px;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul.expanded {
+            display: block;
+        }
+
+        .sidebar .toggle-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 0;
+            color: #37352F;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .sidebar .toggle-item::before {
+            content: '►';
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 0.8em;
+            transition: transform 0.2s ease;
+            color: #9B9A97;
+        }
+
+        .sidebar .toggle-item.expanded::before {
+            transform: rotate(90deg);
+        }
+
+        .sidebar .day-list li a {
+            display: block;
+            padding: 4px 0 4px 23px;
+            color: #2E7DD8;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar .day-list li a:hover {
+            background-color: rgba(211, 229, 247, 0.5);
+            color: #2b67a8;
+        }
+
+        .sidebar .day-list li a.current-archive-link {
+            font-weight: 600;
+            color: #37352F;
+            background-color: rgba(235, 236, 237, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -157,79 +298,91 @@
      <div id="sidebar-placeholder"></div>
 
     <script>
-    // Script to fetch sidebar, assuming sidebar.html and sidebar.js are at the root
     document.addEventListener('DOMContentLoaded', function() {
-        const originalFetch = window.fetch;
-        window.fetch = function(url, options) {
-            if (url === 'sidebar.html') {
-                // Adjust path based on current file depth
-                const depth = window.location.pathname.split('/').length - 2; // -2 for leading '/' and filename
-                const prefix = '../'.repeat(depth);
-                return originalFetch(prefix + 'sidebar.html', options);
-            }
-            return originalFetch(url, options);
-        };
-
-        fetch('sidebar.html')
-            .then(response => response.text())
+        const pathParts = window.location.pathname.split('/');
+        const depth = pathParts.length - 1;
+        
+        let prefix = '';
+        for (let i = 0; i < depth - 1; i++) {
+            prefix += '../';
+        }
+        
+        fetch(prefix + '../../../sidebar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('无法加载sidebar.html: ' + response.statusText);
+                }
+                return response.text();
+            })
             .then(data => {
                 const placeholder = document.getElementById('sidebar-placeholder');
                 if (placeholder) {
                     placeholder.innerHTML = data;
+                    
+                    const sidebar = document.querySelector('.sidebar');
+                    const sidebarToggleContainer = document.querySelector('.sidebar-toggle-container');
+                    let sidebarTimeout;
+
+                    if (sidebarToggleContainer && sidebar) {
+                        sidebarToggleContainer.addEventListener('mouseover', function() {
+                            clearTimeout(sidebarTimeout);
+                            sidebar.classList.add('active');
+                        });
+
+                        sidebarToggleContainer.addEventListener('mouseout', function() {
+                            sidebarTimeout = setTimeout(() => {
+                                if (!sidebar.matches(':hover')) {
+                                    sidebar.classList.remove('active');
+                                }
+                            }, 300);
+                        });
+
+                        sidebar.addEventListener('mouseover', function() {
+                            clearTimeout(sidebarTimeout);
+                        });
+
+                        sidebar.addEventListener('mouseout', function() {
+                            sidebarTimeout = setTimeout(() => {
+                                if (!sidebarToggleContainer.matches(':hover')) {
+                                    sidebar.classList.remove('active');
+                                }
+                            }, 300);
+                        });
+
+                        const toggleItems = document.querySelectorAll('.sidebar .toggle-item');
+                        toggleItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                const sublist = this.nextElementSibling;
+                                if (sublist && sublist.tagName === 'UL') {
+                                    sublist.classList.toggle('expanded');
+                                    this.classList.toggle('expanded');
+                                }
+                            });
+                        });
+                        
+                        const currentPagePath = window.location.pathname.split('/').pop();
+                        const sidebarLinks = document.querySelectorAll('.sidebar .day-list a');
+                        sidebarLinks.forEach(link => {
+                            const linkPath = link.getAttribute('href');
+                            if (linkPath === currentPagePath) {
+                                link.classList.add('current-archive-link');
+                                const dayList = link.closest('.day-list');
+                                const monthToggle = dayList?.previousElementSibling;
+                                const monthList = monthToggle?.closest('.month-list');
+                                const yearToggle = monthList?.previousElementSibling;
+
+                                if (dayList) dayList.classList.add('expanded');
+                                if (monthToggle) monthToggle.classList.add('expanded');
+                                if (monthList) monthList.classList.add('expanded');
+                                if (yearToggle) yearToggle.classList.add('expanded');
+                            }
+                        });
+                    }
                 } else {
-                    console.error('Sidebar placeholder not found.');
+                    console.error('Sidebar占位符未找到.');
                 }
             })
-            .catch(error => console.error('Error loading sidebar:', error));
-
-        // Navigation logic (copied from original for self-containment if needed)
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.4
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navItems.forEach(item => {
-                        item.classList.remove('active');
-                        if (item.getAttribute('href') === `#${entry.target.id}`) {
-                            item.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        if(window.location.hash) {
-             navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === window.location.hash) {
-                    item.classList.add('active');
-                }
-            });
-        }
-
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-                navItems.forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
+            .catch(error => console.error('加载sidebar时出错:', error));
     });
     </script>
     <header>
@@ -356,6 +509,6 @@
             <p>专注技术交流，分享开发经验</p>
         </footer>
     </div>
-      <script src="../../../script.js"></script>
+    <script src="../../../script.js"></script>
 </body>
 </html> 
