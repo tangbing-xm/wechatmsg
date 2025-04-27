@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月入万刀预备队🔥日报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+        }
+        header {
+            text-align: left;
+            background-color: #0a8f70;
+            color: white;
+            padding: 30px 20px;
+            margin-bottom: 0;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        h1:before {
+            content: "💎";
+            margin-right: 10px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            color: #333;
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        h2:before {
+            content: "⭐";
+            margin-right: 10px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+        }
+        .section-title:before {
+            margin-right: 10px;
+        }
+        .ai-tool:before {
+            content: "🤖";
+        }
+        h3 {
+            font-size: 1.3rem;
+            margin: 15px 0 10px;
+            color: #333;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .highlight-list li:before {
+            content: "✅";
+            position: absolute;
+            left: -25px;
+        }
+        a {
+            color: #0a8f70;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: right;
+        }
+        .highlight {
+            background-color: #f0f9f6;
+            border-left: 4px solid #0a8f70;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .quote {
+            font-style: italic;
+            font-weight: 500;
+        }
+        .contributor {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 15px;
+            text-align: right;
+        }
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        .tagline {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .main-container {
+            background-color: white;
+            padding: 20px;
+        }
+        section {
+            background-color: white;
+            padding: 5px 0;
+            margin-bottom: 20px;
+        }
+        .section-content {
+            background-color: #f0f9f6;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .bullet-list {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        .bullet-list li {
+            padding-left: 25px;
+            position: relative;
+        }
+        .bullet-list li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #0a8f70;
+        }
+        .content-highlight {
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar-placeholder"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const pathParts = window.location.pathname.split('/');
+        const depth = pathParts.length - 1;
+        
+        let prefix = '';
+        for (let i = 0; i < depth - 1; i++) {
+            prefix += '../';
+        }
+        
+        fetch(prefix + '../../../sidebar.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('无法加载sidebar.html: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                const placeholder = document.getElementById('sidebar-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = data;
+                    
+                    const sidebar = document.querySelector('.sidebar');
+                    const sidebarToggleContainer = document.querySelector('.sidebar-toggle-container');
+                    let sidebarTimeout;
+
+                    if (sidebarToggleContainer && sidebar) {
+                        sidebarToggleContainer.addEventListener('mouseover', function() {
+                            clearTimeout(sidebarTimeout);
+                            sidebar.classList.add('active');
+                        });
+
+                        sidebarToggleContainer.addEventListener('mouseout', function() {
+                            sidebarTimeout = setTimeout(() => {
+                                if (!sidebar.matches(':hover')) {
+                                    sidebar.classList.remove('active');
+                                }
+                            }, 300);
+                        });
+
+                        sidebar.addEventListener('mouseover', function() {
+                            clearTimeout(sidebarTimeout);
+                        });
+
+                        sidebar.addEventListener('mouseout', function() {
+                            sidebarTimeout = setTimeout(() => {
+                                if (!sidebarToggleContainer.matches(':hover')) {
+                                    sidebar.classList.remove('active');
+                                }
+                            }, 300);
+                        });
+
+                        const toggleItems = document.querySelectorAll('.sidebar .toggle-item');
+                        toggleItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                const sublist = this.nextElementSibling;
+                                if (sublist && sublist.tagName === 'UL') {
+                                    sublist.classList.toggle('expanded');
+                                    this.classList.toggle('expanded');
+                                }
+                            });
+                        });
+                        
+                        const currentPagePath = window.location.pathname.split('/').pop();
+                        const sidebarLinks = document.querySelectorAll('.sidebar .day-list a');
+                        sidebarLinks.forEach(link => {
+                            const linkPath = link.getAttribute('href');
+                            if (linkPath === currentPagePath) {
+                                link.classList.add('current-archive-link');
+                                const dayList = link.closest('.day-list');
+                                const monthToggle = dayList?.previousElementSibling;
+                                const monthList = monthToggle?.closest('.month-list');
+                                const yearToggle = monthList?.previousElementSibling;
+
+                                if (dayList) dayList.classList.add('expanded');
+                                if (monthToggle) monthToggle.classList.add('expanded');
+                                if (monthList) monthList.classList.add('expanded');
+                                if (yearToggle) yearToggle.classList.add('expanded');
+                            }
+                        });
+                    }
+                } else {
+                    console.error('Sidebar占位符未找到.');
+                }
+            })
+            .catch(error => console.error('加载sidebar时出错:', error));
+    });
+    </script>
+    <header>
+        <h1>月入万刀预备队🔥</h1>
+        <div class="tagline">专注技术交流，分享开发经验</div>
+        <div class="date">2025-04-27</div>
+    </header>
+
+    <div class="main-container">
+        <section>
+            <h2>今日精华亮点</h2>
+            <p>今日群聊内容丰富，主要讨论了AI图像生成、教育邮箱申请、网站开发与流量增长等话题。以下为重点内容：</p>
+            <ul class="highlight-list">
+                <li>Getimg.ai的Ghibli风格效果评测</li>
+                <li>ASU教育邮箱申请经验分享</li>
+                <li>Next.js酒店模板项目开源</li>
+                <li>网站流量增长经验讨论</li>
+                <li>Bolt API活动信息</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">AI图像生成评测</h2>
+            <div class="section-content">
+                <p>群友们讨论了Getimg.ai的Ghibli风格生成效果：</p>
+
+                <div class="highlight">
+                    <p class="content-highlight">"getimg.ai生成的ghibili像坨屎，这风格好比江南皮革厂出的动画片"</p>
+                </div>
+
+                <p>关于该平台的讨论：</p>
+                <ul class="bullet-list">
+                    <li>木白指出："这网站靠ghibli这一波赚了上千万的流量"</li>
+                    <li>定价策略："定价是真高，老外钱还真好赚"</li>
+                    <li>功能限制："他的问题是不能以图生图"</li>
+                </ul>
+
+                <p>尽管效果褒贬不一，木白尝试后表示："我试了一张，还凑合"</p>
+
+                <div class="contributor">贡献者：Shrek、木白</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">教育邮箱申请</h2>
+            <div class="section-content">
+                <p>Z先生分享了ASU教育邮箱的申请经验：</p>
+
+                <div class="highlight">
+                    <p class="content-highlight">"周五凌晨申请的 asu 教育邮箱，今天 早上就有 id 了 订阅成功"</p>
+                </div>
+
+                <p>申请细节：</p>
+                <ul class="bullet-list">
+                    <li>申请速度："从申请到获得ID只用了约一天时间"</li>
+                    <li>使用信息："可以使用国内地址和电话进行申请"</li>
+                    <li>使用价值："一年使用时间还是挺香的"</li>
+                </ul>
+
+                <p>Shrek指出这个资源很有价值："这个羊毛还是可以薅一下，我看咸鱼都有人在卖"</p>
+
+                <div class="contributor">贡献者：Z先生、AkidL、Shrek</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">网站开发分享</h2>
+            <div class="section-content">
+                <p>Shrek分享了一个酒店网站模板项目：</p>
+
+                <div class="highlight">
+                    <p class="content-highlight">"有个朋友做酒店的，做了一个next.js的模板，有类似需求的可以拿去部署 开源了"</p>
+                </div>
+
+                <p>相关资源链接：</p>
+                <ul class="bullet-list">
+                    <li>预览链接：<a href="https://luxury-villas-orcin.vercel.app/" target="_blank">https://luxury-villas-orcin.vercel.app/</a></li>
+                    <li>GitHub仓库：<a href="https://github.com/tangbing-xm/luxury-villas.git" target="_blank">https://github.com/tangbing-xm/luxury-villas.git</a></li>
+                </ul>
+
+                <p>对于编程小白的建议：</p>
+                <ul class="bullet-list">
+                    <li>"大概要看得懂代码就行 css html js的先入门去"</li>
+                    <li>"入门了就简单了 next.js快的话花两天了解一下就可以上路了"</li>
+                    <li>"后面全是推广和找需求上"</li>
+                </ul>
+
+                <div class="contributor">贡献者：Shrek、。。。</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">网站流量增长</h2>
+            <div class="section-content">
+                <p>武晓亮分享了网站流量突增的情况：</p>
+
+                <div class="highlight">
+                    <p class="content-highlight">"昨天一下增加了600访问量"</p>
+                </div>
+
+                <p>流量分析讨论：</p>
+                <ul class="bullet-list">
+                    <li>可能原因："爬虫或者漏洞扫描会增加访问量"</li>
+                    <li>网站类型："还是靠站，那个toolify"</li>
+                    <li>流量策略：Shrek评论"你这叫截留"</li>
+                </ul>
+
+                <p>关于内容策略的建议：</p>
+                <ul class="bullet-list">
+                    <li>Shrek提醒："知识库尽量不要上传自己写的内容"</li>
+                </ul>
+
+                <div class="contributor">贡献者：武晓亮、Z先生、rns、Shrek</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Bolt API活动</h2>
+            <div class="section-content">
+                <p>群友们分享了Bolt API活动的信息：</p>
+
+                <ul class="bullet-list">
+                    <li>配额信息："厉害了 1M 每天"</li>
+                    <li>使用情况："我昨天就用掉了2M"</li>
+                    <li>相关发现："昨天我发的那个站点就是在bolt的活动推文跟帖下找到的"</li>
+                </ul>
+
+                <div class="contributor">贡献者：AkidL、stewart、天辉、Shrek</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">每日金句</h2>
+            <div class="highlight">
+                <p class="quote">"世界上最贵的，是你等待完美时错过的机会。"</p>
+                <p>这是GPT在与群友曲直聊天时送给他的一句话，引发了群友们的共鸣。提醒我们在追求完美的过程中，不要错过眼前的机会。</p>
+                <p>—— 曲直分享自GPT</p>
+            </div>
+        </section>
+        <script src="../../../script.js"></script>
+        <footer class="footer">
+            <p>月入万刀预备队🔥 © 2025</p>
+            <p>专注技术交流，分享开发经验</p>
+        </footer>
+    </div>
+</body>
+</html>
