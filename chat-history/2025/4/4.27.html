@@ -159,6 +159,163 @@
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+                /* --- Sidebar Styles Start --- */
+                .sidebar-toggle-container {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001; /* Ensure it's above the sidebar initially */
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: rgba(10, 143, 112, 0.8); /* Semi-transparent background */
+            padding: 10px 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+        .sidebar-toggle-container:hover {
+             background-color: #0a8f70; /* Solid on hover */
+        }
+
+        .sidebar-toggle {
+            padding: 8px;
+        }
+        .sidebar-toggle span {
+             font-size: 1.5rem;
+             color: white;
+             display: block;
+        }
+
+        .sidebar-toggle-text {
+            writing-mode: vertical-rl; /* Vertical text */
+            text-orientation: mixed;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-left: 2px; /* Space between icon and text */
+            white-space: nowrap;
+        }
+
+
+        .sidebar {
+            position: fixed;
+            left: -280px; /* Start off-screen */
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background-color: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+            padding-top: 60px; /* Space for header or top content */
+            overflow-y: auto;
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar.active {
+            left: 0; /* Slide in */
+        }
+
+        .sidebar-content {
+            padding: 15px;
+        }
+
+        .sidebar h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0; /* Remove default padding */
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul ul {
+             padding-left: 15px; /* Indent nested lists */
+             display: none; /* Hide nested lists by default */
+             margin-top: 5px;
+        }
+
+        .sidebar ul.expanded {
+            display: block; /* Show expanded lists */
+        }
+
+
+        .sidebar li {
+            margin-bottom: 5px;
+            position: relative; /* Needed for absolute positioning of toggle icon */
+        }
+
+         .sidebar .toggle-item {
+            cursor: pointer;
+            display: block;
+            padding: 5px 0;
+            font-weight: bold;
+            color: #495057;
+            position: relative;
+             padding-left: 18px; /* Space for toggle icon */
+        }
+         .sidebar .toggle-item:before {
+             content: '►'; /* Collapsed indicator */
+             position: absolute;
+             left: 0;
+             top: 50%;
+             transform: translateY(-50%);
+             font-size: 0.7em;
+             color: #6c757d;
+             transition: transform 0.2s ease;
+         }
+
+         .sidebar .toggle-item.expanded:before {
+             transform: translateY(-50%) rotate(90deg); /* Expanded indicator */
+         }
+
+        .sidebar .year-toggle {
+            font-size: 1rem;
+             color: #343a40;
+        }
+         .sidebar .month-toggle {
+             font-size: 0.95rem;
+         }
+
+
+        .sidebar .day-list li {
+            margin-bottom: 3px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 3px 0 3px 5px; /* Adjust padding for day links */
+            color: #0a8f70;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #e9ecef;
+            text-decoration: none;
+             color: #0056b3;
+        }
+
+        .sidebar a.current-archive-link {
+            font-weight: bold;
+            background-color: #d1e7dd; /* Highlight color for current page */
+            color: #0a8f70;
+        }
+         /* --- Sidebar Styles End --- */
+
+
     </style>
 </head>
 <body>
